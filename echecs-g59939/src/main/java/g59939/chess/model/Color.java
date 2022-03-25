@@ -11,16 +11,18 @@ package g59939.chess.model;
  */
 public enum Color {
     WHITE, BLACK;
-    
-    /**
-     *
-     * @return
-     */
-    public Color opposite () {
-        if (this == Color.WHITE) 
-            return BLACK;
 
-      return WHITE;
+    /**
+     * this method returns the opposite of the current color
+     *
+     * @return WHITE or BLACK
+     */
+    public Color opposite() {
+        if (this == Color.WHITE) {
+            return BLACK;
+        }
+
+        return WHITE;
 
     }
 }
