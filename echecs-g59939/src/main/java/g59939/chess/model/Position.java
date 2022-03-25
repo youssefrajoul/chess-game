@@ -12,7 +12,12 @@ package g59939.chess.model;
 public class Position {
     private int row;
     private int column;
-
+    
+    /**
+     * This method is used as a constructor of the position Class
+     * @param row of the position
+     * @param column of the position
+     */
     public Position(int row, int column) {
         this.row = row;
         this.column = column;
