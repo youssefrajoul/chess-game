@@ -44,6 +44,7 @@ public class Position {
     }
 
     public Position next(Direction dir) {
-        Position test = new Position(this.row + dir.getDeltaRow(), this.column + dir.getDeltaColumn());
+        Position nouvellePostion = new Position(this.row + dir.getDeltaRow(), this.column + dir.getDeltaColumn());
+        return nouvellePostion;
     }
 }
