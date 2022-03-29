@@ -42,7 +42,12 @@ public class Position {
     public int getColumn() {
         return column;
     }
-
+    
+    /**
+     * 
+     * @param dir
+     * @return 
+     */
     public Position next(Direction dir) {
         Position nouvellePostion = new Position(this.row + dir.getDeltaRow(), this.column + dir.getDeltaColumn());
         return nouvellePostion;
