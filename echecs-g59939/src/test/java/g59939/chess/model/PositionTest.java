@@ -1,0 +1,91 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/UnitTests/JUnit5TestClass.java to edit this template
+ */
+package g59939.chess.model;
+
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+
+/**
+ *
+ * @author HONOR
+ */
+public class PositionTest {
+    
+    public PositionTest() {
+    }
+    
+    @Test
+    public void testNextPosNE () {
+        System.out.println("NextPosNE");
+        Position posDepart = new Position(2,2);
+        Position posArrive = posDepart.next(Direction.NE);
+        Position result = new Position(3,3);
+        assertEquals(posArrive, result);
+    }
+    
+    @Test
+    public void testNextPosNW () {
+        System.out.println("NextPosNW ");
+        Position posDepart = new Position(2,2);
+        Position posArrive = posDepart.next(Direction.NW);
+        Position result = new Position(3,1);
+        assertEquals(posArrive, result);
+    }
+    
+    @Test
+    public void testNextPosNord () {
+        System.out.println("NextPosNord");
+        Position posDepart = new Position(2,2);
+        Position posArrive = posDepart.next(Direction.N);
+        Position result = new Position(3,2);
+        assertEquals(posArrive, result);
+    }
+    
+    @Test
+    public void testNextPosSE () {
+        System.out.println("NextPosSE");
+        Position posDepart = new Position(2,2);
+        Position posArrive = posDepart.next(Direction.SE);
+        Position result = new Position(1,3);
+        assertEquals(posArrive, result);
+    }
+    
+    @Test
+    public void testNextPosSW () {
+        System.out.println("NextPosSW");
+        Position posDepart = new Position(2,2);
+        Position posArrive = posDepart.next(Direction.SW);
+        Position result = new Position(1,1);
+        assertEquals(posArrive, result);
+    }
+    
+    @Test
+    public void testNextPosSud () {
+        System.out.println("NextPosSud");
+        Position posDepart = new Position(2,2);
+        Position posArrive = posDepart.next(Direction.S);
+        Position result = new Position(1,2);
+        assertEquals(posArrive, result);
+    }
+    
+    @Test
+    public void testNextPosEst () {
+        System.out.println("NextPosEst");
+        Position posDepart = new Position(2,2);
+        Position posArrive = posDepart.next(Direction.E);
+        Position result = new Position(2,3);
+        assertEquals(posArrive, result);
+    }
+    
+    @Test
+    public void testNextPosWEST () {
+        System.out.println("NextPosWEST");
+        Position posDepart = new Position(2,2);
+        Position posArrive = posDepart.next(Direction.W);
+        Position result = new Position(2,1);
+        assertEquals(posArrive, result);
+    }
+    
+}
