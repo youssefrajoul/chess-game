@@ -1,14 +1,14 @@
 package g59939.chess.model;
 
 /**
- *
+ * This Class treats direction of chess Objects
  * @author g59939
  */
 public enum Direction {
     NW(1, -1), N(1, 0), NE(1, 1), W(0, -1), E(0, 1), SW(-1, -1), S(-1, 0), SE(-1, 1);
 
-    private int deltaRow;
-    private int deltaColumn;
+    private final int deltaRow;
+    private final int deltaColumn;
 
     /**
      * This method is used as a constructor of the Direction Class to initialize

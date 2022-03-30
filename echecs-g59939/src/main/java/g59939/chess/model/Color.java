@@ -6,7 +6,7 @@
 package g59939.chess.model;
 
 /**
- *
+ * This Class treats the player's color
  * @author g59939
  */
 public enum Color {

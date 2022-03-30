@@ -5,7 +5,7 @@ package g59939.chess.model;
  * @author g59939
  */
 public class Piece {
-    private Color color;
+    private final Color color;
     
     /**
      * Constructor to initialize the attribute of this class

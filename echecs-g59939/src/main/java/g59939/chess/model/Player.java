@@ -1,12 +1,12 @@
 package g59939.chess.model;
 
 /**
- *
+ * This Class treats the Player Objects
  * @author g59939
  */
 public class Player {
     
-    private Color color;
+    private final Color color;
     
     /**
      * Constructor to initialize the attribute of this class

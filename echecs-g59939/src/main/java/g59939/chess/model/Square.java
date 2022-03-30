@@ -1,7 +1,7 @@
 package g59939.chess.model;
 
 /**
- *
+ * This Class treats the 64 square of chess game
  * @author g59939
  */
 public class Square {

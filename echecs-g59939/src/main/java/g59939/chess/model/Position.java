@@ -6,7 +6,7 @@
 package g59939.chess.model;
 
 /**
- *
+ * This Class treats current and next position of chess Objects
  * @author g59939
  */
 public class Position {
@@ -49,8 +49,8 @@ public class Position {
      * @return 
      */
     public Position next(Direction dir) {
-        int nextRow = dir.getDeltaRow();
-        int nextColumn = dir.getDeltaColumn();
+        int nextRow = dir.getDeltaRow()+this.row;
+        int nextColumn = dir.getDeltaColumn()+this.column;
         
         if(row == 7){
             nextRow = 0 ;
@@ -59,7 +59,7 @@ public class Position {
             nextColumn = 0;
         }
         
-        Position nextPos = new Position((row+nextRow),(column+nextColumn));
+        Position nextPos = new Position((nextRow),(nextColumn));
         return nextPos;
     }
 
