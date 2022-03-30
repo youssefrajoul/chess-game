@@ -10,7 +10,7 @@ package g59939.chess.model;
  * @author g59939
  */
 public class Position {
-
+    //attributes
     private int row;
     private int column;
 
@@ -44,12 +44,49 @@ public class Position {
     }
     
     /**
-     * 
+     * this method generates the new position by using Direction Class
      * @param dir
      * @return 
      */
     public Position next(Direction dir) {
-        Position nouvellePostion = new Position(this.row + dir.getDeltaRow(), this.column + dir.getDeltaColumn());
-        return nouvellePostion;
+        int nextRow = dir.getDeltaRow();
+        int nextColumn = dir.getDeltaColumn();
+        
+        if(row == 7){
+            nextRow = 0 ;
+        }
+        if (column == 7) {
+            nextColumn = 0;
+        }
+        
+        Position nextPos = new Position((row+nextRow),(column+nextColumn));
+        return nextPos;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Position other = (Position) obj;
+        if (this.row != other.row) {
+            return false;
+        }
+        if (this.column != other.column) {
+            return false;
+        }
+        return true;
     }
 }
