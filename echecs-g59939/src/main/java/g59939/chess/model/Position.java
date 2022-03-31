@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package g59939.chess.model;
 
 /**
@@ -52,11 +47,11 @@ public class Position {
         int nextRow = dir.getDeltaRow()+this.row;
         int nextColumn = dir.getDeltaColumn()+this.column;
         
-        if(row == 7){
-            nextRow = 0 ;
+        if(row == 7 || row == 0){
+            nextRow = this.row ;
         }
-        if (column == 7) {
-            nextColumn = 0;
+        if (column == 7 || row == 0) {
+            nextColumn = this.column;
         }
         
         Position nextPos = new Position((nextRow),(nextColumn));
