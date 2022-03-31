@@ -63,7 +63,7 @@ public class Board {
     }
     
     /**
-     * This function returns the piece taking a square position
+     * This function get the piece taking a piece position as parameter
      * @param position
      * @return piece
      */

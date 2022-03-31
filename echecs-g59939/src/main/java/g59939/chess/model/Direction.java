@@ -19,7 +19,7 @@ public enum Direction {
      * @param deltaC this is the second parameter which represents the column
      * movements
      */
-    Direction(int deltaR, int deltaC) {
+    private Direction(int deltaR, int deltaC) {
         this.deltaRow = deltaR;
         this.deltaColumn = deltaC;
     }
