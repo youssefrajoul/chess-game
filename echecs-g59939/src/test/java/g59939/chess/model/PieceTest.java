@@ -27,6 +27,7 @@ public class PieceTest {
         board = new Board();
     }
 
+    //Tests for Moves with no possible Opponent to attack
     @Test
     public void testPossibleTwoMovesPWhite() {
         System.out.println("Test Two Moves Forward for White Pawns");
@@ -83,15 +84,67 @@ public class PieceTest {
         assertEqualsIgnoringOrder(expected, positions);
     }
 
+    //Tests for Moves with possible Opponent to attack
     @Test
-    public void testPossibleMovesWhenDetectingBlackOpenentinNE() {
+    public void testPossibleMovesWhenDetectingBlackOpponentinNEwithoutMovingBefore() {
+        System.out.println("Test Moves When Detecting Black Opponent in NE and this pawn didn't move yet");
+        Position position = new Position(1, 2);
+        Piece piece = new Piece(Color.WHITE);
+        board.setPiece(piece, position);
+        Position positionOpponent = new Position(2, 1);
+        Piece pieceOpponent = new Piece(Color.BLACK);
+        board.setPiece(pieceOpponent, positionOpponent);
+
+        List<Position> expected = List.of(new Position(2, 2), new Position(2, 1), new Position(3, 2));
+
+        List<Position> positions = piece.getPossibleMoves(position, board);
+
+        assertEqualsIgnoringOrder(expected, positions);
+    }
+
+    @Test
+    public void testPossibleMovesWhenDetectingBlackOpponentinNWwithoutMovingBefore() {
+        System.out.println("Test Moves When Detecting Black Opponent in NW and this pawn didn't move yet");
+        Position position = new Position(1, 2);
+        Piece piece = new Piece(Color.WHITE);
+        board.setPiece(piece, position);
+        Position positionOpponent = new Position(2, 3);
+        Piece pieceOpponent = new Piece(Color.BLACK);
+        board.setPiece(pieceOpponent, positionOpponent);
+
+        List<Position> expected = List.of(new Position(2, 2), new Position(2, 3), new Position(3, 2));
+
+        List<Position> positions = piece.getPossibleMoves(position, board);
+
+        assertEqualsIgnoringOrder(expected, positions);
+    }
+
+    @Test
+    public void testPossibleMovesWhenDetectingBlackOpponentinNwithoutMovingBefore() {
+        System.out.println("Test Moves When Detecting Black Opponent in Nord and this pawn didn't move yet");
+        Position position = new Position(1, 2);
+        Piece piece = new Piece(Color.WHITE);
+        board.setPiece(piece, position);
+        Position positionOpponent = new Position(2, 2);
+        Piece pieceOpponent = new Piece(Color.BLACK);
+        board.setPiece(pieceOpponent, positionOpponent);
+
+        List<Position> expected = List.of();
+
+        List<Position> positions = piece.getPossibleMoves(position, board);
+
+        assertEqualsIgnoringOrder(expected, positions);
+    }
+
+    @Test
+    public void testPossibleMovesWhenDetectingBlackOpponentinNE() {
         System.out.println("Test One Move Nord Est Diagonal for White Pawn");
         Position position = new Position(4, 3);
         Piece piece = new Piece(Color.WHITE);
         board.setPiece(piece, position);
-        Position positionOppenent = new Position(5, 4);
-        Piece pieceOppenent = new Piece(Color.BLACK);
-        board.setPiece(pieceOppenent, positionOppenent);
+        Position positionOpponent = new Position(5, 4);
+        Piece pieceOpponent = new Piece(Color.BLACK);
+        board.setPiece(pieceOpponent, positionOpponent);
 
         List<Position> expected = List.of(new Position(5, 3), new Position(5, 4));
 
@@ -101,14 +154,14 @@ public class PieceTest {
     }
 
     @Test
-    public void testPossibleMovesWhenDetectingBlackOpenentinNW() {
+    public void testPossibleMovesWhenDetectingBlackOpponentinNW() {
         System.out.println("Test One Move Nord West Diagonal for White Pawn");
         Position position = new Position(4, 3);
         Piece piece = new Piece(Color.WHITE);
         board.setPiece(piece, position);
-        Position positionOppenent = new Position(5, 2);
-        Piece pieceOppenent = new Piece(Color.BLACK);
-        board.setPiece(pieceOppenent, positionOppenent);
+        Position positionOpponent = new Position(5, 2);
+        Piece pieceOpponent = new Piece(Color.BLACK);
+        board.setPiece(pieceOpponent, positionOpponent);
 
         List<Position> expected = List.of(new Position(5, 3), new Position(5, 2));
 
@@ -118,17 +171,17 @@ public class PieceTest {
     }
 
     @Test
-    public void testPossibleMovesWhenDetectingBlackOpenentinNEandNW() {
+    public void testPossibleMovesWhenDetectingBlackOpponentinNEandNW() {
         System.out.println("Test One Move Nord EST & WEST Diagonal for White Pawn");
         Position position = new Position(4, 3);
         Piece piece = new Piece(Color.WHITE);
         board.setPiece(piece, position);
-        Position positionOppenent1 = new Position(5, 4);
-        Piece pieceOppenent1 = new Piece(Color.BLACK);
-        board.setPiece(pieceOppenent1, positionOppenent1);
-        Position positionOppenent2 = new Position(5, 2);
-        Piece pieceOppenent2 = new Piece(Color.BLACK);
-        board.setPiece(pieceOppenent2, positionOppenent2);
+        Position positionOpponent1 = new Position(5, 4);
+        Piece pieceOpponent1 = new Piece(Color.BLACK);
+        board.setPiece(pieceOpponent1, positionOpponent1);
+        Position positionOpponent2 = new Position(5, 2);
+        Piece pieceOpponent2 = new Piece(Color.BLACK);
+        board.setPiece(pieceOpponent2, positionOpponent2);
 
         List<Position> expected = List.of(new Position(5, 3), new Position(5, 4), new Position(5, 2));
 
@@ -138,14 +191,14 @@ public class PieceTest {
     }
 
     @Test
-    public void testPossibleMovesWhenDetectingBlackOpenentinSE() {
-        System.out.println("Test One Move Nord Est Diagonal for White Pawn");
+    public void testPossibleMovesWhenDetectingBlackOpponentinSE() {
+        System.out.println("Test One Move for Black Pawn When Detecting Black Opponent in SE");
         Position position = new Position(4, 3);
         Piece piece = new Piece(Color.BLACK);
         board.setPiece(piece, position);
-        Position positionOppenent = new Position(3, 4);
-        Piece pieceOppenent = new Piece(Color.BLACK);
-        board.setPiece(pieceOppenent, positionOppenent);
+        Position positionOpponent = new Position(3, 4);
+        Piece pieceOpponent = new Piece(Color.WHITE);
+        board.setPiece(pieceOpponent, positionOpponent);
 
         List<Position> expected = List.of(new Position(3, 4), new Position(3, 3));
 
@@ -155,14 +208,14 @@ public class PieceTest {
     }
 
     @Test
-    public void testPossibleMovesWhenDetectingBlackOpenentinSW() {
-        System.out.println("Test One Move Nord West Diagonal for White Pawn");
+    public void testPossibleMovesWhenDetectingBlackOpponentinSW() {
+        System.out.println("Test One Move for Black Pawn When Detecting Black Opponent in SW");
         Position position = new Position(4, 3);
         Piece piece = new Piece(Color.BLACK);
         board.setPiece(piece, position);
-        Position positionOppenent = new Position(3, 2);
-        Piece pieceOppenent = new Piece(Color.BLACK);
-        board.setPiece(pieceOppenent, positionOppenent);
+        Position positionOpponent = new Position(3, 2);
+        Piece pieceOpponent = new Piece(Color.WHITE);
+        board.setPiece(pieceOpponent, positionOpponent);
 
         List<Position> expected = List.of(new Position(3, 2), new Position(3, 3));
 
@@ -172,17 +225,17 @@ public class PieceTest {
     }
 
     @Test
-    public void testPossibleMovesWhenDetectingBlackOpenentinSEandSW() {
-        System.out.println("Test One Move Nord EST & WEST Diagonal for White Pawn");
+    public void testPossibleMovesWhenDetectingBlackOpponentinSEandSW() {
+        System.out.println("Test One Move for Black Pawn When Detecting Black Opponent in SE and NW");
         Position position = new Position(4, 3);
         Piece piece = new Piece(Color.BLACK);
         board.setPiece(piece, position);
-        Position positionOppenent1 = new Position(3, 2);
-        Piece pieceOppenent1 = new Piece(Color.BLACK);
-        board.setPiece(pieceOppenent1, positionOppenent1);
-        Position positionOppenent2 = new Position(3, 4);
-        Piece pieceOppenent2 = new Piece(Color.BLACK);
-        board.setPiece(pieceOppenent2, positionOppenent2);
+        Position positionOpponent1 = new Position(3, 2);
+        Piece pieceOpponent1 = new Piece(Color.WHITE);
+        board.setPiece(pieceOpponent1, positionOpponent1);
+        Position positionOpponent2 = new Position(3, 4);
+        Piece pieceOpponent2 = new Piece(Color.WHITE);
+        board.setPiece(pieceOpponent2, positionOpponent2);
 
         List<Position> expected = List.of(new Position(3, 2), new Position(3, 3), new Position(3, 4));
 
@@ -192,16 +245,16 @@ public class PieceTest {
     }
 
     @Test
-    public void testBlockedPawnsByOppenent() {
-        System.out.println("Test Blocked Pawns By Oppenent");
+    public void testBlockedPawnsByOpponent() {
+        System.out.println("Test Blocked Pawns By Opponent");
 
-        Position position = new Position(3, 3);
+        Position position = new Position(1, 5);
         Piece piece = new Piece(Color.WHITE);
         board.setPiece(piece, position);
 
-        Position positionOppenent1 = new Position(4, 3);
-        Piece pieceOppenent1 = new Piece(Color.BLACK);
-        board.setPiece(pieceOppenent1, positionOppenent1);
+        Position positionOpponent1 = new Position(2, 5);
+        Piece pieceOpponent1 = new Piece(Color.BLACK);
+        board.setPiece(pieceOpponent1, positionOpponent1);
 
         List<Position> expected = List.of();
 
@@ -218,9 +271,9 @@ public class PieceTest {
         Piece piece = new Piece(Color.WHITE);
         board.setPiece(piece, position);
 
-        Position positionOppenent1 = new Position(4, 3);
-        Piece pieceOppenent1 = new Piece(Color.WHITE);
-        board.setPiece(pieceOppenent1, positionOppenent1);
+        Position positionOpponent1 = new Position(4, 3);
+        Piece pieceOpponent1 = new Piece(Color.WHITE);
+        board.setPiece(pieceOpponent1, positionOpponent1);
 
         List<Position> expected = List.of();
 
