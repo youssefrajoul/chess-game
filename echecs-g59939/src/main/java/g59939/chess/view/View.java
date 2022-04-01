@@ -3,7 +3,7 @@ package g59939.chess.view;
 import g59939.chess.model.Position;
 
 /**
- *
+ * This Interface treats Display and user interface
  * @author g59939
  */
 public interface View {

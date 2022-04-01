@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
- *
+ * This Class treats inputs and outputs (messages and keyboard input)
  * @author g59939
  */
 public class TextView implements View {
@@ -66,13 +66,13 @@ public class TextView implements View {
     @Override
     public void displayPlayer() {
         System.out.print("\n");
-        System.out.println("JOUEUR " + model.getCurrentPlayer()+ " est invite a jouer : ");
+        System.out.println("JOUEUR " + model.getCurrentPlayer()+ " est invité à jouer : ");
         System.out.print("\n");
     }
 
     @Override
     public Position askPosition() {
-        String position = scanKeyboard("Veuillez entrer une position (1-8 ; a-h). Exemple : 2a ou 6d");
+        String position = scanKeyboard("Veuillez entrer une position (1-8 | a-h). Exemple : 2b ou 6d");
         List<String> rangeOfNumbers = List.of("1", "2", "3", "4", "5", "6", "7", "8");
         List<String> rangeOfLetters = List.of("a", "b", "c", "d", "e", "f", "g", "h");
 
@@ -89,7 +89,7 @@ public class TextView implements View {
             position = scanKeyboard("Nouvelle position : ");
         }
         while (position.length() != 2) {
-            displayError("INVALIDE : Entrez une position valide. Exemple: 3f");
+            displayError("INVALIDE : Entrez une position valide. Exemple: 3c");
             position = scanKeyboard("Nouvelle position : ");
         }
         int row = rangeOfNumbers.indexOf(position.substring(0, 1));
