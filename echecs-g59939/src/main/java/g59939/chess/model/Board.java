@@ -10,6 +10,10 @@ import java.util.List;
 public class Board {
 
     private final Square allSquares[][];
+    public final int INITIAL_POSITION_BLACK = 6;
+    public final int INITIAL_POSITION_WHITE = 1;
+    public final int ROW_COLUMN_SEVEN = 7;
+    public final int ROW_COLUMN_ZERO = 0;
 
     /**
      * this constructor creates a 2D Object.array(Board) and initialize every
@@ -32,7 +36,7 @@ public class Board {
     public boolean contains(Position position) {
         int row = position.getRow();
         int column = position.getColumn();
-        return column <= 7 && column >= 0 && row <= 7 && row >= 0;
+        return column <= ROW_COLUMN_SEVEN && column >= ROW_COLUMN_ZERO && row <= ROW_COLUMN_SEVEN && row >= ROW_COLUMN_ZERO;
     }
     
     /**
@@ -42,9 +46,9 @@ public class Board {
      */
     public int getInitialPawnRow(Color color) {
         if (color == Color.BLACK) {
-            return 6;
+            return INITIAL_POSITION_BLACK;
         } else {
-            return 1;
+            return INITIAL_POSITION_WHITE;
         }
     }
     
@@ -54,8 +58,9 @@ public class Board {
      * @param position 
      */
     public void setPiece(Piece piece, Position position) {
-        if (!contains(position)) {
-            throw new IllegalArgumentException("can't set piece because position is out board");
+        while (position == null) {
+            displayError("Vous devez entrer une position valide");
+            position = scanKeyboard("Nouvelle position : ");
         }
         int row = position.getRow();
         int column = position.getColumn();

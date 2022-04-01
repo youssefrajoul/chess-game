@@ -7,17 +7,21 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
- * This Class treats inputs and outputs (messages and keyboard input)
+ * This Class treats Text inputs and outputs (messages and keyboard input)
  * @author g59939
  */
 public class TextView implements View {
 
     private final Model model;
+    int timer;
 
     public TextView(Model model) {
         this.model = model;
     }
 
+    /**
+     * Method to Display the title when game start
+     */
     @Override
     public void displayTitle() {
         System.out.println("""
@@ -25,6 +29,9 @@ public class TextView implements View {
                                      BIENVENUE    \u001b[m""");
     }
 
+    /**
+     * Method Display the whole board of chess game
+     */
     @Override
     public void displayBoard() {
         String Columns = "    a  b  c  d  e  f  g  h";
@@ -56,6 +63,9 @@ public class TextView implements View {
         System.out.println(Columns);
     }
 
+    /**
+     * Method display the winner
+     */
     @Override
     public void displayWinner() {
         System.out.print("\n");
@@ -63,6 +73,9 @@ public class TextView implements View {
         System.out.println("Le Perdant est :" + model.getCurrentPlayer());
     }
 
+    /**
+     * Method to display the Current Player
+     */
     @Override
     public void displayPlayer() {
         System.out.print("\n");
@@ -70,8 +83,20 @@ public class TextView implements View {
         System.out.print("\n");
     }
 
+    /**
+     * Method ask player to input positions
+     * @return 
+     */
     @Override
     public Position askPosition() {
+        
+        if (timer == 0) {
+            System.out.println("Position de depart est ?");
+            timer = 1;
+        } else {
+            System.out.println("Position d'arrivee est ?");
+            timer = 0;
+        }
         String position = scanKeyboard("{Veuillez entrer une position (1-8 | a-h). Exemple : 2b ou 6d):");
         List<String> rangeOfNumbers = List.of("1", "2", "3", "4", "5", "6", "7", "8");
         List<String> rangeOfLetters = List.of("a", "b", "c", "d", "e", "f", "g", "h");
@@ -97,6 +122,10 @@ public class TextView implements View {
         return new Position(row, col);
     }
 
+    /**
+     * Method to display error when player set wrong position
+     * @param message 
+     */
     @Override
     public void displayError(String message) {
         System.out.println("!!!!ERREUR!!!! : " + message);

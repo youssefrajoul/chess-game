@@ -17,7 +17,10 @@ public class Controller {
         this.view = view;
         this.model = model;
     }
-
+    
+    /**
+     * This Method Method pilot the game step by step
+     */
     public void play() {
         boolean gameIsOver = false;
 
@@ -27,9 +30,7 @@ public class Controller {
         while (!gameIsOver) {
             view.displayBoard();
             view.displayPlayer();
-            System.out.println("Position de depart est ?");
             Position oldPos = view.askPosition();
-            System.out.println("Position d'arrivee est ?");
             Position newPos = view.askPosition();
             model.movePiecePosition(oldPos, newPos);
             gameIsOver = model.isGameOver();
