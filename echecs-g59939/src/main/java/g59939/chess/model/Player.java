@@ -26,6 +26,6 @@ public class Player {
 
     @Override
     public String toString() {
-        return "{Couleur=" + color + '}';
+        return "{Player " + color + '}';
     }
 }
