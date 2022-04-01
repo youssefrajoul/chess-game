@@ -21,8 +21,8 @@ public class TextView implements View {
     @Override
     public void displayTitle() {
         System.out.println("""
-                           \u001b[33m-----------JEU D'ECHECS-----------
-                                    ----BIENVENUE----\u001b[m""");
+                           \u001b[33m        JEU D'ECHECS     
+                                     BIENVENUE    \u001b[m""");
     }
 
     @Override
@@ -72,7 +72,7 @@ public class TextView implements View {
 
     @Override
     public Position askPosition() {
-        String position = scanKeyboard("Veuillez entrer une position (1-8 | a-h). Exemple : 2b ou 6d");
+        String position = scanKeyboard("{Veuillez entrer une position (1-8 | a-h). Exemple : 2b ou 6d):");
         List<String> rangeOfNumbers = List.of("1", "2", "3", "4", "5", "6", "7", "8");
         List<String> rangeOfLetters = List.of("a", "b", "c", "d", "e", "f", "g", "h");
 
