@@ -15,14 +15,15 @@ public class Game implements Model {
     private Player currentPlayer;
 
     public Game() {
-        this.board = new Board();
-        this.white = new Player(Color.WHITE);
-        this.black = new Player(Color.BLACK);
+        
+        white = new Player(Color.WHITE);
+        black = new Player(Color.BLACK);
+        board = new Board();
     }
 
     @Override
     public void start() {
-        this.currentPlayer = new Player(Color.WHITE);
+        currentPlayer = white;
         Piece PB = new Piece(Color.WHITE);
         Piece PN = new Piece(Color.BLACK);
         for (int i = 0; i < 8; i++) {
@@ -42,22 +43,22 @@ public class Game implements Model {
 
     @Override
     public Player getCurrentPlayer() {
-        return this.currentPlayer;
+        return currentPlayer;
     }
 
     @Override
     public Player getOppositePlayer() {
         if (this.currentPlayer == this.white) {
-            return this.black;
+            return black;
         } else {
-            return this.white;
+            return white;
         }
     }
 
     @Override
     public boolean isCurrentPlayerPosition(Position pos) {
         if (!board.contains(pos)) {
-            throw new IllegalArgumentException("Position out of the Board !!!");
+            throw new IllegalArgumentException("!!! Position out of the Board !!!");
         }else {
             return board.getPiece(pos).getColor() == currentPlayer.getColor();
         }
@@ -66,10 +67,10 @@ public class Game implements Model {
     @Override
     public void movePiecePosition(Position oldPos, Position newPos) {
         if (!board.contains(oldPos) || !board.contains(newPos)) {
-            throw new IllegalArgumentException("Position out of the Board !!!");
+            throw new IllegalArgumentException("old Position or new Position are not located on the board !!!");
         }
         if (board.isFree(oldPos)) {
-            throw new IllegalArgumentException("Old Position is free !!!");
+            throw new IllegalArgumentException("Old Position isEmpty !!!");
         }
         if (!isCurrentPlayerPosition(oldPos)){
             throw new IllegalArgumentException("the piece doesn't belong to the current player !!!");
@@ -77,7 +78,7 @@ public class Game implements Model {
         if (!board.getPiece(oldPos).getPossibleMoves(oldPos, board).contains(newPos)){
             throw new IllegalArgumentException("the move is not valid !!!");
         }
-        board.setPiece(getPiece(oldPos), oldPos);
+        board.setPiece(board.getPiece(oldPos), newPos);
         board.dropPiece(oldPos);
         if (!isGameOver()) {
             currentPlayer = getOppositePlayer();
@@ -86,8 +87,14 @@ public class Game implements Model {
 
     @Override
     public boolean isGameOver() {
-        //if one of the players has no pawn left, return true(game is over)
-        return board.getPositionOccupiedBy(black).isEmpty() || board.getPositionOccupiedBy(white).isEmpty();
+        List<Position> PossibleMoves = board.getPositionOccupiedBy(currentPlayer);
+        boolean isgameover = false;
+        for(int i = 0; i < PossibleMoves.size() ; i++){
+            if(getPossibleMoves(PossibleMoves.get(i)).isEmpty()){
+                isgameover = true;
+            }
+        }
+        return isgameover;
     }
 
     @Override

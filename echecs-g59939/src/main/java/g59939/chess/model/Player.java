@@ -23,5 +23,9 @@ public class Player {
     public Color getColor() {
         return color;
     }
-    
+
+    @Override
+    public String toString() {
+        return "{Couleur=" + color + '}';
+    }
 }

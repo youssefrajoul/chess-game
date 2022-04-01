@@ -31,6 +31,7 @@ public class Piece {
 
     /**
      * This Method gets possible moves of the Piece in all Conditions
+     *
      * @param position position of the piece
      * @param board the chessGame board 64*64 square.
      * @return List of possible moves to make.
@@ -47,9 +48,11 @@ public class Piece {
 
         return ListOfMoves;
     }
-    
+
     /**
-     * Sub Method of the method getPossibleMoves : it treats the moves of the pawn when this one didn't move yet
+     * Sub Method of the method getPossibleMoves : it treats the moves of the
+     * pawn when this one didn't move yet
+     *
      * @param ListOfMoves
      * @param position
      * @param board
@@ -61,7 +64,7 @@ public class Piece {
             if (board.isFree(position.next(Direction.S)) && board.isFree(position.next(Direction.S).next(Direction.S))) {
                 ListOfMoves.add(position.next(Direction.S));
                 ListOfMoves.add(position.next(Direction.S).next(Direction.S));
-            } else if(board.isFree(position.next(Direction.S))) {
+            } else if (board.isFree(position.next(Direction.S))) {
                 ListOfMoves.add(position.next(Direction.S));
             }
             //------------------------------------------
@@ -75,9 +78,11 @@ public class Piece {
         }
         return ListOfMoves;
     }
-    
+
     /**
-     * Sub Method of the method getPossibleMoves : it treats the moves of the pawn when this one already moved
+     * Sub Method of the method getPossibleMoves : it treats the moves of the
+     * pawn when this one already moved
+     *
      * @param ListOfMoves
      * @param position
      * @param board
@@ -99,10 +104,12 @@ public class Piece {
     }
 
     /**
-     * Sub Method of the method getPossibleMoves : it detects if a position is occupied by an Opponent
+     * Sub Method of the method getPossibleMoves : it detects if a position is
+     * occupied by an Opponent
+     *
      * @param ListOfMoves
      * @param position
-     * @param board 
+     * @param board
      */
     private void OpenentDetectedMoves(List<Position> ListOfMoves, Position position, Board board) {
         if (color == Color.WHITE) {
@@ -113,7 +120,9 @@ public class Piece {
     }
 
     /**
-     * Sub Method of the method OpenentDetectedMoves : it detects if a position is occupied by an Black Opponent
+     * Sub Method of the method OpenentDetectedMoves : it detects if a position
+     * is occupied by an Black Opponent
+     *
      * @param ListOfMoves
      * @param position
      * @param board
@@ -121,19 +130,25 @@ public class Piece {
      */
     private List<Position> blackOpenentDetectedMoves(List<Position> ListOfMoves, Position position, Board board) {
         //if else condition to vertical and diagonal moves if Opponent is there
-        if (board.containsOppositeColor(position.next(Direction.NW), color)&& board.containsOppositeColor(position.next(Direction.NE), color)) {
-            ListOfMoves.add(position.next(Direction.NW));
-            ListOfMoves.add(position.next(Direction.NE));
-        } else if (board.containsOppositeColor(position.next(Direction.NW), color)) {
-            ListOfMoves.add(position.next(Direction.NW));
-        } else if (board.containsOppositeColor(position.next(Direction.NE), color)) {
-            ListOfMoves.add(position.next(Direction.NE));
+        if (board.containsOppositeColor(position.next(Direction.N), color)) {
+            ListOfMoves.clear();
+        } else {
+            if (board.containsOppositeColor(position.next(Direction.NW), color) && board.containsOppositeColor(position.next(Direction.NE), color)) {
+                ListOfMoves.add(position.next(Direction.NW));
+                ListOfMoves.add(position.next(Direction.NE));
+            } else if (board.containsOppositeColor(position.next(Direction.NW), color)) {
+                ListOfMoves.add(position.next(Direction.NW));
+            } else if (board.containsOppositeColor(position.next(Direction.NE), color)) {
+                ListOfMoves.add(position.next(Direction.NE));
+            }
         }
         return ListOfMoves;
     }
 
     /**
-     * Sub Method of the method OpenentDetectedMoves : it detects if a position is occupied by an White Opponent
+     * Sub Method of the method OpenentDetectedMoves : it detects if a position
+     * is occupied by an White Opponent
+     *
      * @param ListOfMoves
      * @param position
      * @param board
@@ -141,13 +156,17 @@ public class Piece {
      */
     private List<Position> whiteOpenentDetected(List<Position> ListOfMoves, Position position, Board board) {
         //if else condition to vertical and diagonal moves if Opponent is there
-        if (board.containsOppositeColor(position.next(Direction.SW), color)&& board.containsOppositeColor(position.next(Direction.SE), color)) {
-            ListOfMoves.add(position.next(Direction.SW));
-            ListOfMoves.add(position.next(Direction.SE));
-        } else if (board.containsOppositeColor(position.next(Direction.SW), color)) {
-            ListOfMoves.add(position.next(Direction.SW));
-        } else if (board.containsOppositeColor(position.next(Direction.SE), color)) {
-            ListOfMoves.add(position.next(Direction.SE));
+        if (board.containsOppositeColor(position.next(Direction.S), color)) {
+            ListOfMoves.clear();
+        } else {
+            if (board.containsOppositeColor(position.next(Direction.SW), color) && board.containsOppositeColor(position.next(Direction.SE), color)) {
+                ListOfMoves.add(position.next(Direction.SW));
+                ListOfMoves.add(position.next(Direction.SE));
+            } else if (board.containsOppositeColor(position.next(Direction.SW), color)) {
+                ListOfMoves.add(position.next(Direction.SW));
+            } else if (board.containsOppositeColor(position.next(Direction.SE), color)) {
+                ListOfMoves.add(position.next(Direction.SE));
+            }
         }
         return ListOfMoves;
     }

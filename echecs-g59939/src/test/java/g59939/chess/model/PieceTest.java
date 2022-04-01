@@ -4,10 +4,8 @@
  */
 package g59939.chess.model;
 
-import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -253,6 +251,25 @@ public class PieceTest {
         board.setPiece(piece, position);
 
         Position positionOpponent1 = new Position(2, 5);
+        Piece pieceOpponent1 = new Piece(Color.BLACK);
+        board.setPiece(pieceOpponent1, positionOpponent1);
+
+        List<Position> expected = List.of();
+
+        List<Position> positions = piece.getPossibleMoves(position, board);
+
+        assertEqualsIgnoringOrder(expected, positions);
+    }
+
+    @Test
+    public void testBlockedPawnsByOpponentTwoMoves() {
+        System.out.println("Test Black Pawn In Borders after two moves from both players");
+
+        Position position = new Position(3, 0);
+        Piece piece = new Piece(Color.WHITE);
+        board.setPiece(piece, position);
+
+        Position positionOpponent1 = new Position(4, 0);
         Piece pieceOpponent1 = new Piece(Color.BLACK);
         board.setPiece(pieceOpponent1, positionOpponent1);
 

@@ -6,8 +6,8 @@ package g59939.chess.model;
  */
 public class Position {
     //attributes
-    private int row;
-    private int column;
+    private final int row;
+    private final int column;
 
     /**
      * This method is used as a constructor of the position Class
@@ -50,7 +50,7 @@ public class Position {
         if(row == 7 || row == 0){
             nextRow = this.row ;
         }
-        if (column == 7 || row == 0) {
+        if (column == 7 || column == 0) {
             nextColumn = this.column;
         }
         

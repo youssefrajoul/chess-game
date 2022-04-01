@@ -55,7 +55,7 @@ public class Board {
      */
     public void setPiece(Piece piece, Position position) {
         if (!contains(position)) {
-            throw new IllegalArgumentException("position out of board");
+            throw new IllegalArgumentException("can't set piece because position is out board");
         }
         int row = position.getRow();
         int column = position.getColumn();
@@ -63,13 +63,13 @@ public class Board {
     }
     
     /**
-     * This function get the piece taking a piece position as parameter
+     * This function get the piece in the position passed as parameter
      * @param position
      * @return piece
      */
     public Piece getPiece(Position position) {
         if (!contains(position)) {
-            throw new IllegalArgumentException("position out of board");
+            throw new IllegalArgumentException("can't get piece because position is out board");
         }
         int row = position.getRow();
         int column = position.getColumn();
@@ -83,7 +83,7 @@ public class Board {
      */
     public void dropPiece(Position position) {
         if (!contains(position)) {
-            throw new IllegalArgumentException("position out of board");
+            throw new IllegalArgumentException("can't drop piece because position is out board");
         }
         int row = position.getRow();
         int column = position.getColumn();
@@ -97,7 +97,7 @@ public class Board {
      */
     public boolean isFree(Position position) {
         if (!contains(position)) {
-            throw new IllegalArgumentException("position out of board");
+            throw new IllegalArgumentException("can't treat isFree because position is out board");
         }
         int row = position.getRow();
         int column = position.getColumn();
@@ -113,18 +113,14 @@ public class Board {
      */
     public boolean containsOppositeColor(Position position, Color color) {
         if (!contains(position)) {
-            throw new IllegalArgumentException("position out of board");
+            throw new IllegalArgumentException("can't containsOppositeColor because position is out board");
         }
         if (isFree(position)) {
             return false;
         }
         int row = position.getRow();
         int column = position.getColumn();
-        if (allSquares[row][column].getPiece().getColor() == color) {
-            return false;
-        } else {
-            return true;
-        }
+        return allSquares[row][column].getPiece().getColor() != color;
     }
     
     /**
