@@ -47,13 +47,6 @@ public class Position {
         int nextRow = dir.getDeltaRow()+this.row;
         int nextColumn = dir.getDeltaColumn()+this.column;
         
-        if(row == 7 || row == 0){
-            nextRow = this.row ;
-        }
-        if (column == 7 || column == 0) {
-            nextColumn = this.column;
-        }
-        
         Position nextPos = new Position((nextRow),(nextColumn));
         return nextPos;
     }

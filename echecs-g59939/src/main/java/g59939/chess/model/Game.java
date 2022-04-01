@@ -88,10 +88,10 @@ public class Game implements Model {
     @Override
     public boolean isGameOver() {
         List<Position> PossibleMoves = board.getPositionOccupiedBy(currentPlayer);
-        boolean isgameover = false;
+        boolean isgameover = true;
         for(int i = 0; i < PossibleMoves.size() ; i++){
-            if(getPossibleMoves(PossibleMoves.get(i)).isEmpty()){
-                isgameover = true;
+            if(!(getPossibleMoves(PossibleMoves.get(i)).isEmpty())){
+                isgameover = false;
             }
         }
         return isgameover;
