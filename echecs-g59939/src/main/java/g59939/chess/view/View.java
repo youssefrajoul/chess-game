@@ -30,6 +30,7 @@ public interface View {
 
     /**
      * Ask position(in board) to the current player
+     * @return 
      */
     public Position askPosition();
 

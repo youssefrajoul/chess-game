@@ -58,10 +58,9 @@ public class Board {
      * @param position 
      */
     public void setPiece(Piece piece, Position position) {
-//        while (position == null) {
-//            displayError("Vous devez entrer une position valide");
-//            position = scanKeyboard("Nouvelle position : ");
-//        }
+        if (!contains(position)) {
+            throw new IllegalArgumentException("can't set Piece because position is out board");
+        }
         int row = position.getRow();
         int column = position.getColumn();
         allSquares[row][column].setPiece(piece);

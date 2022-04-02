@@ -101,6 +101,7 @@ public class TextView implements View {
         List<String> rangeOfNumbers = List.of("1", "2", "3", "4", "5", "6", "7", "8");
         List<String> rangeOfLetters = List.of("a", "b", "c", "d", "e", "f", "g", "h");
 
+        
         while (!rangeOfNumbers.contains(position.substring(0, 1))) {
             displayError("Veuillez entrer un chiffre entre 1-8 !!!");
             position = scanKeyboard("Nouvelle position : ");
@@ -118,8 +119,8 @@ public class TextView implements View {
             position = scanKeyboard("Nouvelle position : ");
         }
         int row = rangeOfNumbers.indexOf(position.substring(0, 1));
-        int col = rangeOfLetters.indexOf(position.substring(1, 2));
-        return new Position(row, col);
+        int column = rangeOfLetters.indexOf(position.substring(1, 2));
+        return new Position(row, column);
     }
 
     /**
