@@ -58,10 +58,10 @@ public class Board {
      * @param position 
      */
     public void setPiece(Piece piece, Position position) {
-        while (position == null) {
-            displayError("Vous devez entrer une position valide");
-            position = scanKeyboard("Nouvelle position : ");
-        }
+//        while (position == null) {
+//            displayError("Vous devez entrer une position valide");
+//            position = scanKeyboard("Nouvelle position : ");
+//        }
         int row = position.getRow();
         int column = position.getColumn();
         allSquares[row][column].setPiece(piece);

@@ -18,6 +18,5 @@ public enum Color {
         }
 
         return WHITE;
-
     }
 }
