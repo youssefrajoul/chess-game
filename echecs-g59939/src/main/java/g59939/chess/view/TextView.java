@@ -69,8 +69,8 @@ public class TextView implements View {
     @Override
     public void displayWinner() {
         System.out.print("\n");
-        System.out.println("Le gagnant est :" + model.getOppositePlayer());
-        System.out.println("Le Perdant est :" + model.getCurrentPlayer());
+        System.out.println("Le gagnant est :" + model.getCurrentPlayer());
+        System.out.println("Le Perdant est :" + model.getOppositePlayer());
     }
 
     /**
