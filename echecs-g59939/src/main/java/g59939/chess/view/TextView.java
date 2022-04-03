@@ -8,6 +8,7 @@ import java.util.Scanner;
 
 /**
  * This Class treats Text inputs and outputs (messages and keyboard input)
+ *
  * @author g59939
  */
 public class TextView implements View {
@@ -79,17 +80,18 @@ public class TextView implements View {
     @Override
     public void displayPlayer() {
         System.out.print("\n");
-        System.out.println("JOUEUR " + model.getCurrentPlayer()+ " est invité à jouer : ");
+        System.out.println("JOUEUR " + model.getCurrentPlayer() + " est invité à jouer : ");
         System.out.print("\n");
     }
 
     /**
      * Method ask player to input positions
-     * @return 
+     *
+     * @return
      */
     @Override
     public Position askPosition() {
-        
+
         if (timer == 0) {
             System.out.println("Position de depart est ?");
             timer = 1;
@@ -101,23 +103,27 @@ public class TextView implements View {
         List<String> rangeOfNumbers = List.of("1", "2", "3", "4", "5", "6", "7", "8");
         List<String> rangeOfLetters = List.of("a", "b", "c", "d", "e", "f", "g", "h");
 
-        
+        while (position.length() != 2) {
+            displayError("INVALIDE : Entrez une position valide. Exemple: 3c");
+            System.out.println("Error 4");
+            position = scanKeyboard("Nouvelle position : ");
+        }
         while (!rangeOfNumbers.contains(position.substring(0, 1))) {
             displayError("Veuillez entrer un chiffre entre 1-8 !!!");
+            System.out.println("Error 1");
             position = scanKeyboard("Nouvelle position : ");
         }
         while (!rangeOfLetters.contains(position.substring(1, 2))) {
             displayError("Veuillez entrer une lettre entre a-h ?");
+            System.out.println("Error 2");
             position = scanKeyboard("Nouvelle position : ");
         }
         while (position == null) {
             displayError("Vous devez entrer une position valide");
+            System.out.println("Error 3");
             position = scanKeyboard("Nouvelle position : ");
         }
-        while (position.length() != 2) {
-            displayError("INVALIDE : Entrez une position valide. Exemple: 3c");
-            position = scanKeyboard("Nouvelle position : ");
-        }
+
         int row = rangeOfNumbers.indexOf(position.substring(0, 1));
         int column = rangeOfLetters.indexOf(position.substring(1, 2));
         return new Position(row, column);
@@ -125,7 +131,8 @@ public class TextView implements View {
 
     /**
      * Method to display error when player set wrong position
-     * @param message 
+     *
+     * @param message
      */
     @Override
     public void displayError(String message) {
@@ -134,6 +141,7 @@ public class TextView implements View {
 
     /**
      * This Method is used to get user input
+     *
      * @param message
      * @return user input
      */
