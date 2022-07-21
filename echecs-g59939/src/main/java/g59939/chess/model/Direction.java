@@ -6,13 +6,13 @@ package g59939.chess.model;
  */
 public enum Direction {
     NW(1,-1),
-    N(1,-1),
-    NE(1,-1),
-    W(1,-1),
-    E(1,-1),
-    SW(1,-1),
-    S(1,-1),
-    SE(1,-1);
+    N(1,0),
+    NE(1,1),
+    W(0,-1),
+    E(0,1),
+    SW(-1,-1),
+    S(-1,0),
+    SE(-1,1);
     
     private int deltaRow;
     private int deltaColumn;
