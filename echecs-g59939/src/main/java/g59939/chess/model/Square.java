@@ -2,14 +2,17 @@ package g59939.chess.model;
 
 /**
  * Represents one square of the chess board
- * @author HONOR
+ *
+ * @author g59939
  */
 public class Square {
+
     private Piece piece;
 
     /**
      * constructor of the class
-     * @param piece 
+     *
+     * @param piece
      */
     public Square(Piece piece) {
         this.piece = piece;
@@ -17,7 +20,8 @@ public class Square {
 
     /**
      * Gets the piece in the square
-     * @return 
+     *
+     * @return
      */
     public Piece getPiece() {
         return piece;
@@ -25,15 +29,17 @@ public class Square {
 
     /**
      * Sets the piece in the square
+     *
      * @param piece Object of type piece
      */
     public void setPiece(Piece piece) {
         this.piece = piece;
     }
-    
+
     /**
      * Gets the square has a piece or not
-     * @return 
+     *
+     * @return
      */
     public boolean isFree() {
         return piece == null;

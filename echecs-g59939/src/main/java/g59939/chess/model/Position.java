@@ -3,7 +3,7 @@ package g59939.chess.model;
 /**
  * Represents the position of pieces
  *
- * @author HONOR
+ * @author g59939
  */
 public class Position {
 

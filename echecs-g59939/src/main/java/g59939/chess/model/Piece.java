@@ -2,7 +2,7 @@ package g59939.chess.model;
 
 /**
  * Represents the Pieces of the game (Pawn, Queen, Rook ...)
- * @author HONOR
+ * @author g59939
  */
 public class Piece {
     private Color color;
