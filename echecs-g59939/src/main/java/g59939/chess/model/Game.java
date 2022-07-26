@@ -44,6 +44,7 @@ public class Game implements Model {
     @Override
     public Piece getPiece(Position pos) {
         return board.getPiece(pos);
+        // to do //@throws IllegalArgumentException pos is not located on the board.
     }
 
     /**
@@ -82,6 +83,7 @@ public class Game implements Model {
     @Override
     public boolean isCurrentPlayerPosition(Position pos) {
         return !board.containsOppositeColor(pos, getCurrentPlayer().getColor());
+        // to do //@throws IllegalArgumentException pos is not located on the board.
     }
 
     /**
@@ -102,6 +104,7 @@ public class Game implements Model {
         if (!isGameOver()) {
             currentPlayer = getOppositePlayer();
         }
+        // to do //@throws IllegalArgumentException pos is not located on the board.
     }
 
     /**
