@@ -4,7 +4,7 @@ import java.util.List;
 
 /**
  *
- * @author HONOR
+ * @author g59939
  */
 public interface Model {
 
@@ -55,10 +55,11 @@ public interface Model {
      *
      * @param oldPos the current position
      * @param newPos the new position of the board where to put the piece
-     * @throws IllegalArgumentException if 1) oldPos or newPos are not located
-     * on the board, or 2) oldPos does not contain a piece, or 3) the piece does
-     * not belong to the current player, or 4) the move is not valid for the
-     * piece located at position oldPos
+     * @throws IllegalArgumentException if 
+     * 1) oldPos or newPos are not located on the board, or 
+     * 2) oldPos does not contain a piece, or 
+     * 3) the piece does not belong to the current player, or 
+     * 4) the move is not valid for the piece located at position oldPos
      */
     public void movePiecePosition(Position oldPos, Position newPos);
 
@@ -73,7 +74,7 @@ public interface Model {
      * Get the possible moves for the piece located at the specified position.
      *
      * @param position the position of the piece
-     * @return the liste of admissible positions.
+     * @return the list of admissible positions.
      */
     public List<Position> getPossibleMoves(Position position);
 

@@ -84,7 +84,7 @@ public class Board {
      * Checks if the position passed in parameters has the opposite Color(Player)
      * @param pos Object of type Position
      * @param col Object of type Color
-     * @return True if the position has a different color or False if not
+     * @return True if the position has a different color player or False otherwise
      */
     public boolean containsOppositeColor(Position pos, Color col) {
         if (isFree(pos)) {
