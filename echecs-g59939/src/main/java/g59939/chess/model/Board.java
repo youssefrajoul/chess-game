@@ -26,10 +26,10 @@ public class Board {
     /**
      * Gets if the position is within the board or not
      * @param pos Object of type position
-     * @return true or false
+     * @return true if the position is within the board or false otherwise
      */
     public boolean contains(Position pos) {
-        return !(pos.getRow() > 7 || pos.getRow() < 0 || pos.getColumn() > 7 || pos.getColumn() < 0);
+        return (pos.getRow() <= 7 && pos.getRow() >= 0 && pos.getColumn() <= 7 && pos.getColumn() >= 0);
     }
 
     /**

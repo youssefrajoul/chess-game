@@ -40,8 +40,8 @@ public class TextView implements View {
     @Override
     public void displayBoard() {
         for (int i = 7; i >= 0; i--) {
-            System.out.println("    --------------------------------");
-            System.out.print(i);
+            System.out.println("   -------------------------");
+            System.out.print(i + 1);
             System.out.print("  ");
             for (int j = 0; j < 8; j++) {
                 System.out.print("|");
@@ -56,6 +56,8 @@ public class TextView implements View {
             }
             System.out.println("|");
         }
+        System.out.println("   -------------------------");
+        System.out.println("     a  b  c  d  e  f  g  h");
     }
 
     /**
@@ -71,7 +73,7 @@ public class TextView implements View {
      */
     @Override
     public void displayPlayer() {
-        System.out.println("Current player : " + model.getCurrentPlayer());
+        System.out.println("Current player : " + model.getCurrentPlayer().getColor());
     }
 
     /**
@@ -96,7 +98,9 @@ public class TextView implements View {
         int input1 = scan.nextInt() - 1;
         System.out.println("Entrez une lettre (a-h):");
         char input2 = scan.next().charAt(0);
-        return new Position(input1, map.get(input2));
+        Position pos = new Position(input1, map.get(input2));
+        System.out.println(pos);
+        return pos;
         /// to do // Lecture Robust
     }
 

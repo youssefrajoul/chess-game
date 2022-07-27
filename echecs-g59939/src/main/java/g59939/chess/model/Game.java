@@ -99,8 +99,14 @@ public class Game implements Model {
      */
     @Override
     public void movePiecePosition(Position oldPos, Position newPos) {
-        board.dropPiece(oldPos);
+        if (!board.contains(oldPos)) {
+            throw new IllegalArgumentException("old position out of board");
+        }
+        if (!board.contains(newPos)) {
+            throw new IllegalArgumentException("new position out of board");
+        }
         board.setPiece(board.getPiece(oldPos), newPos);
+        board.dropPiece(oldPos);
         if (!isGameOver()) {
             currentPlayer = getOppositePlayer();
         }
