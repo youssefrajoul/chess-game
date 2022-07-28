@@ -51,7 +51,8 @@ public class Piece {
      * Sub-Method to got only white possible moves
      *
      * @param possibleMoves List of type position
-     * @param position object Position
+     * @param position object Position represents the current position of the
+     * piece
      * @param board Object Board
      */
     private void whitePiecePossMoves(List<Position> possibleMoves, Position position, Board board) {
@@ -59,8 +60,10 @@ public class Piece {
             // Vertical Moves
             if (board.isFree(position.next(Direction.N))) {
                 possibleMoves.add(position.next(Direction.N));
-                if (board.isFree(position.next(Direction.N).next(Direction.N)) && position.getRow() == board.getInitialPawnRow(board.getPiece(position).getColor())) {
-                    possibleMoves.add(position.next(Direction.N).next(Direction.N));
+                if (board.contains(position.next(Direction.N).next(Direction.N))) {
+                    if (board.isFree(position.next(Direction.N).next(Direction.N)) && position.getRow() == board.getInitialPawnRow(board.getPiece(position).getColor())) {
+                        possibleMoves.add(position.next(Direction.N).next(Direction.N));
+                    }
                 }
             }
             if (board.contains(position.next(Direction.NE))) {
@@ -77,8 +80,10 @@ public class Piece {
             // Vertical Moves
             if (board.isFree(position.next(Direction.S))) {
                 possibleMoves.add(position.next(Direction.S));
-                if (board.isFree(position.next(Direction.S).next(Direction.S)) && position.getRow() == board.getInitialPawnRow(board.getPiece(position).getColor())) {
-                    possibleMoves.add(position.next(Direction.S).next(Direction.S));
+                if (board.contains(position.next(Direction.S).next(Direction.S))) {
+                    if (board.isFree(position.next(Direction.S).next(Direction.S)) && position.getRow() == board.getInitialPawnRow(board.getPiece(position).getColor())) {
+                        possibleMoves.add(position.next(Direction.S).next(Direction.S));
+                    }
                 }
             }
             if (board.contains(position.next(Direction.SE))) {

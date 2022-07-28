@@ -57,9 +57,9 @@ public class Board {
      */
     public int getInitialPawnRow(Color color) {
         if (color == Color.WHITE) {
-            return 1;
+            return 5;
         } else {
-            return 6;
+            return 1;
         }
     }
 

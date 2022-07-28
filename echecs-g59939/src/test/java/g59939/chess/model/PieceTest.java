@@ -38,6 +38,20 @@ public class PieceTest {
     }
 
     @Test
+    public void testGetPossibleMovesPtest67() {
+        System.out.println("getPossibleMoves test67");
+        Piece piece = new Piece(Color.WHITE);
+        Position position = new Position(6, 1);
+        board.setPiece(piece, position);
+
+        List<Position> expected = List.of(new Position(7, 1));
+
+        List<Position> positions = piece.getPossibleMoves(position, board);
+
+        assertEqualsIgnoringOrder(expected, positions);
+    }
+
+    @Test
     public void testGetPossibleMovesPDirectionNN() {
         System.out.println("getPossibleMoves DirectionNN");
         Piece piece = new Piece(Color.WHITE);
