@@ -88,7 +88,7 @@ public class Piece {
      * @param direction object Direction
      */
     private void possAttackMoves(List<Position> possibleMoves, Position position, Board board, Direction direction, Color color) {
-        if (!board.isFree(position.next(direction)) && board.containsOppositeColor(position.next(direction), color)) {
+        if (!board.isFree(position.next(direction)) && board.containsOppositeColor(position.next(direction), color) && board.contains(position.next(direction))) {
             possibleMoves.add(position.next(direction));
         }
     }

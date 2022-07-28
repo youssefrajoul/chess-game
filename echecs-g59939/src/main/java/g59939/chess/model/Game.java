@@ -120,19 +120,20 @@ public class Game implements Model {
      */
     @Override
     public boolean isGameOver() {
-        List<Position> list1;
-        list1 = new ArrayList<>();
-        List<Position> list2;
-        list2 = new ArrayList<>();
-        list1 = board.getPositionsOccupiedBy(getCurrentPlayer());
-        for (int i = 0; i < list1.size(); i++) {
-            list2 = board.getPiece(list1.get(i)).getPossibleMoves(list1.get(i), board);
+        List<Position> occupiedPosition = board.getPositionsOccupiedBy(getCurrentPlayer());
+        boolean gameOver = false;
+        System.out.println("Occupied Positions"+occupiedPosition.get(7));
+        for (int i = 0; i < occupiedPosition.size(); i++) {
+            System.out.println("Possible Moves"+getPossibleMoves(occupiedPosition.get(7)));
+//            if (!getPossibleMoves(occupiedPosition.get(i)).isEmpty()) {
+//                gameOver = false;
+//            }
         }
-        return list2.isEmpty();
+        return gameOver;
     }
 
     /**
-     * Get the possible moves for the piece located at the specified position.
+     * Get the possible moves for the piece located at specified position.
      *
      * @param position the position of the piece
      * @return the list of admissible positions.

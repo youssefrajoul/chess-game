@@ -65,7 +65,7 @@ public class TextView implements View {
      */
     @Override
     public void displayWinner() {
-        System.out.println("The Winner is : " + model.getOppositePlayer().getColor());
+        System.out.println("The Winner is : " + model.getCurrentPlayer().getColor());
     }
 
     /**
@@ -99,7 +99,6 @@ public class TextView implements View {
         System.out.println("Entrez une lettre (a-h):");
         char input2 = scan.next().charAt(0);
         Position pos = new Position(input1, map.get(input2));
-        System.out.println(pos);
         return pos;
         /// to do // Lecture Robust
     }
