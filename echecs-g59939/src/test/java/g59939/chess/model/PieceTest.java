@@ -125,6 +125,20 @@ public class PieceTest {
         assertEqualsIgnoringOrder(expected, positions);
     }
 
+    @Test
+    public void testGetPossibleMovesPDirectionNENWEdge() {
+        System.out.println("getPossibleMoves DirectionN Edge");
+        Piece piece = new Piece(Color.WHITE);
+        Position position = new Position(3, 0);
+        board.setPiece(piece, position);
+
+        List<Position> expected = List.of(new Position(4, 0));
+
+        List<Position> positions = piece.getPossibleMoves(position, board);
+
+        assertEqualsIgnoringOrder(expected, positions);
+    }
+
     //black player-----------------------------------------
     @Test
     public void testGetPossibleMovesPDirectionS() {
@@ -222,6 +236,20 @@ public class PieceTest {
         board.setPiece(piece, position);
 
         List<Position> expected = new ArrayList<>();
+
+        List<Position> positions = piece.getPossibleMoves(position, board);
+
+        assertEqualsIgnoringOrder(expected, positions);
+    }
+
+    @Test
+    public void testGetPossibleMovesPDirectionSRightEdge() {
+        System.out.println("getPossibleMoves DirectionS Right Edge");
+        Piece piece = new Piece(Color.BLACK);
+        Position position = new Position(4, 7);
+        board.setPiece(piece, position);
+
+        List<Position> expected = List.of(new Position(3, 7));
 
         List<Position> positions = piece.getPossibleMoves(position, board);
 

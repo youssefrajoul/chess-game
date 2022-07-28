@@ -31,6 +31,7 @@ public class Piece {
 
     /**
      * Gets the list of possible Moves
+     *
      * @param position Object of type Position
      * @param board Object of type Board
      * @return List of type Position
@@ -48,6 +49,7 @@ public class Piece {
 
     /**
      * Sub-Method to got only white possible moves
+     *
      * @param possibleMoves List of type position
      * @param position object Position
      * @param board Object Board
@@ -61,8 +63,12 @@ public class Piece {
                     possibleMoves.add(position.next(Direction.N).next(Direction.N));
                 }
             }
-            possAttackMoves(possibleMoves, position, board, Direction.NE, Color.WHITE);
-            possAttackMoves(possibleMoves, position, board, Direction.NW, Color.WHITE);
+            if (board.contains(position.next(Direction.NE))) {
+                possAttackMoves(possibleMoves, position, board, Direction.NE, Color.WHITE);
+            }
+            if (board.contains(position.next(Direction.NW))) {
+                possAttackMoves(possibleMoves, position, board, Direction.NW, Color.WHITE);
+            }
         }
     }
 
@@ -75,20 +81,25 @@ public class Piece {
                     possibleMoves.add(position.next(Direction.S).next(Direction.S));
                 }
             }
-            possAttackMoves(possibleMoves, position, board, Direction.SE, Color.BLACK);
-            possAttackMoves(possibleMoves, position, board, Direction.SW, Color.BLACK);
+            if (board.contains(position.next(Direction.SE))) {
+                possAttackMoves(possibleMoves, position, board, Direction.SE, Color.BLACK);
+            }
+            if (board.contains(position.next(Direction.SW))) {
+                possAttackMoves(possibleMoves, position, board, Direction.SW, Color.BLACK);
+            }
         }
     }
 
     /**
      * Sub-Method to get only the possible attacking Moves
+     *
      * @param possibleMoves List of type position
      * @param position object Position
      * @param board Object Board
      * @param direction object Direction
      */
     private void possAttackMoves(List<Position> possibleMoves, Position position, Board board, Direction direction, Color color) {
-        if (!board.isFree(position.next(direction)) && board.containsOppositeColor(position.next(direction), color) && board.contains(position.next(direction))) {
+        if (!board.isFree(position.next(direction)) && board.containsOppositeColor(position.next(direction), color)) {
             possibleMoves.add(position.next(direction));
         }
     }

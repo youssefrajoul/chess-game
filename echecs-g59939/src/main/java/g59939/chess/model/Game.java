@@ -121,13 +121,11 @@ public class Game implements Model {
     @Override
     public boolean isGameOver() {
         List<Position> occupiedPosition = board.getPositionsOccupiedBy(getCurrentPlayer());
-        boolean gameOver = false;
-        System.out.println("Occupied Positions"+occupiedPosition.get(7));
+        boolean gameOver = true;
         for (int i = 0; i < occupiedPosition.size(); i++) {
-            System.out.println("Possible Moves"+getPossibleMoves(occupiedPosition.get(7)));
-//            if (!getPossibleMoves(occupiedPosition.get(i)).isEmpty()) {
-//                gameOver = false;
-//            }
+            if (!getPossibleMoves(occupiedPosition.get(i)).isEmpty()) {
+                gameOver = false;
+            }
         }
         return gameOver;
     }
