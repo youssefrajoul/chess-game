@@ -5,6 +5,7 @@ import java.util.List;
 
 /**
  * Represents the board of the chess game
+ *
  * @author g59939
  */
 public class Board {
@@ -25,6 +26,7 @@ public class Board {
 
     /**
      * Gets if the position is within the board or not
+     *
      * @param pos Object of type position
      * @return true if the position is within the board or false otherwise
      */
@@ -34,59 +36,102 @@ public class Board {
 
     /**
      * Sets a chess piece in the position passed in parameters
-     * @param piece object of type Piece
-     * @param position object of type Position
+     *
+     * @param piece object of type Piece 
+     * @param position object of type Position, Where to put the piece
      */
     public void setPiece(Piece piece, Position position) {
+        try {
+            if (!contains(position)) {
+                throw new IllegalArgumentException();
+            }
+        } catch (Exception e) {
+            System.out.println("setPiece Error, The Position is out of board");
+        }
         tableau[position.getRow()][position.getColumn()].setPiece(piece);
     }
 
     /**
      * Gets the piece that is in the position passed in parameters
-     * @param pos object of type Position
-     * @return Object Piece
+     *
+     * @param pos object of type Position that we want to get the piece from
+     * @return Object Piece that we want to get
      */
     public Piece getPiece(Position pos) {
+        try {
+            if (!contains(pos)) {
+                throw new IllegalArgumentException();
+            }
+        } catch (Exception e) {
+            System.out.println("getPiece Error, The Position is out of board");
+        }
         return tableau[pos.getRow()][pos.getColumn()].getPiece();
     }
 
     /**
      * Gets the Initial Pawn rows for bor both players
+     *
      * @param color Object of type Color
-     * @return the number of the line
+     * @return the number of the line 1 for white pawns or 6 for the black pawns
      */
     public int getInitialPawnRow(Color color) {
         if (color == Color.WHITE) {
-            return 5;
-        } else {
             return 1;
+        } else {
+            return 6;
         }
     }
 
     /**
      * Removes the piece from the position passed in parameters
-     * @param pos Object of type Position
+     *
+     * @param pos Object of type Position that we want to remove the piece from
      */
     public void dropPiece(Position pos) {
+        try {
+            if (!contains(pos)) {
+                throw new IllegalArgumentException();
+            }
+        } catch (Exception e) {
+            System.out.println("dropPiece Error, The Position is out of board");
+        }
         tableau[pos.getRow()][pos.getColumn()].setPiece(null);
     }
 
     /**
      * Checks if the position passed in parameters is free or not
-     * @param pos Object of type Position
+     *
+     * @param pos Object of type Position representing the piece on the board
      * @return True if the position is free or False if not
      */
     public boolean isFree(Position pos) {
+        try {
+            if (!contains(pos)) {
+                throw new IllegalArgumentException();
+            }
+        } catch (Exception e) {
+            System.out.println("isFree Error, The Position is out of board");
+        }
         return tableau[pos.getRow()][pos.getColumn()].isFree();
     }
 
     /**
-     * Checks if the position passed in parameters has the opposite Color(Player)
-     * @param pos Object of type Position
-     * @param col Object of type Color
-     * @return True if the position has a different color player or False otherwise
+     * Checks if the position passed in parameters has the opposite
+     * Color(Player)
+     *
+     * @param pos Object of type Position represents the position in the board
+     * @param col Object of type Color represents the color of the piece
+     * @return True if the position has a different color player or False
+     * otherwise
      */
     public boolean containsOppositeColor(Position pos, Color col) {
+        try {
+            if (!contains(pos)) {
+                throw new IllegalArgumentException();
+            }
+        } catch (Exception e) {
+            System.out.println("containsOppositeColor Error, The Position is out of board");
+        }
         if (isFree(pos)) {
             return false;
         } else {
@@ -95,9 +140,11 @@ public class Board {
     }
 
     /**
-     * Gets the list of the positions occupied by the player object passed in parameters
-     * @param player object of type Player
-     * @return List of positions
+     * Gets the list of the positions occupied by the player object passed in
+     * parameters
+     *
+     * @param player object of type Player that we want to get all of his positions in the board
+     * @return List of positions occupied by a player
      */
     public List<Position> getPositionsOccupiedBy(Player player) {
         List<Position> list = new ArrayList<>();
