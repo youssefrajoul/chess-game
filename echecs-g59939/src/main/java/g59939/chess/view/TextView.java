@@ -95,6 +95,11 @@ public class TextView implements View {
         System.out.println("Veuillez entrez une position valide.");
         Scanner scan = new Scanner(System.in);
         System.out.println("Entrez un chiffre (1-8):");
+        while (!scan.hasNextInt()) {
+            scan.next();
+            System.out.println("Rien qu'un seul chiffre svp!!!");
+            System.out.println("Entrez un chiffre (1-8):");
+        }
         int input1 = scan.nextInt() - 1;
         System.out.println("Entrez une lettre (a-h):");
         char input2 = scan.next().charAt(0);

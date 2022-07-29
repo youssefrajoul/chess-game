@@ -46,7 +46,7 @@ public class Board {
                 throw new IllegalArgumentException();
             }
         } catch (Exception e) {
-            System.out.println("setPiece Error, The Position is out of board");
+            System.out.println("setPiece Error Class Board, The Position is out of board");
         }
         tableau[position.getRow()][position.getColumn()].setPiece(piece);
     }
@@ -63,7 +63,7 @@ public class Board {
                 throw new IllegalArgumentException();
             }
         } catch (Exception e) {
-            System.out.println("getPiece Error, The Position is out of board");
+            System.out.println("getPiece Error Class Board, The Position is out of board");
         }
         return tableau[pos.getRow()][pos.getColumn()].getPiece();
     }
@@ -93,7 +93,7 @@ public class Board {
                 throw new IllegalArgumentException();
             }
         } catch (Exception e) {
-            System.out.println("dropPiece Error, The Position is out of board");
+            System.out.println("dropPiece Error Class Board, The Position is out of board");
         }
         tableau[pos.getRow()][pos.getColumn()].setPiece(null);
     }
@@ -110,7 +110,7 @@ public class Board {
                 throw new IllegalArgumentException();
             }
         } catch (Exception e) {
-            System.out.println("isFree Error, The Position is out of board");
+            System.out.println("isFree Error Class Board, The Position is out of board");
         }
         return tableau[pos.getRow()][pos.getColumn()].isFree();
     }
@@ -130,7 +130,7 @@ public class Board {
                 throw new IllegalArgumentException();
             }
         } catch (Exception e) {
-            System.out.println("containsOppositeColor Error, The Position is out of board");
+            System.out.println("containsOppositeColor Error Class Board, The Position is out of board");
         }
         if (isFree(pos)) {
             return false;

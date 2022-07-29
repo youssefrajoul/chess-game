@@ -147,7 +147,6 @@ public class Game implements Model {
         if (!isGameOver()) {
             currentPlayer = getOppositePlayer();
         }
-        // to do //@throws IllegalArgumentException pos is not located on the board.
     }
 
     /**
