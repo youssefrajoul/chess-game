@@ -43,8 +43,14 @@ public class Game implements Model {
      */
     @Override
     public Piece getPiece(Position pos) {
+        try {
+            if (!board.contains(pos)) {
+                throw new IllegalArgumentException();
+            }
+        } catch (Exception e) {
+            System.out.println("getPiece Class Game Error, The Position is out of board");
+        }
         return board.getPiece(pos);
-        // to do //@throws IllegalArgumentException pos is not located on the board.
     }
 
     /**
@@ -82,8 +88,14 @@ public class Game implements Model {
      */
     @Override
     public boolean isCurrentPlayerPosition(Position pos) {
+        try {
+            if (!board.contains(pos)) {
+                throw new IllegalArgumentException();
+            }
+        } catch (Exception e) {
+            System.out.println("isCurrentPlayerPosition Class Game Error, The Position is out of board");
+        }
         return !board.containsOppositeColor(pos, getCurrentPlayer().getColor());
-        // to do //@throws IllegalArgumentException pos is not located on the board.
     }
 
     /**
@@ -99,11 +111,36 @@ public class Game implements Model {
      */
     @Override
     public void movePiecePosition(Position oldPos, Position newPos) {
-        if (!board.contains(oldPos)) {
-            throw new IllegalArgumentException("old position out of board");
+        try {
+            if (!board.contains(oldPos)) {
+                throw new IllegalArgumentException();
+            }
+            if (!board.contains(newPos)) {
+                throw new IllegalArgumentException();
+            }
+        } catch (Exception e) {
+            System.out.println("movePiecePosition Class Game Error, old/new position out of board");
         }
-        if (!board.contains(newPos)) {
-            throw new IllegalArgumentException("new position out of board");
+        try {
+            if (!board.isFree(oldPos)) {
+                throw new IllegalArgumentException();
+            }
+        } catch (Exception e) {
+            System.out.println("movePiecePosition Class Game Error, old position does not contain a piece");
+        }
+        try {
+            if (getCurrentPlayer().getColor() != board.getPiece(oldPos).getColor()) {
+                throw new IllegalArgumentException();
+            }
+        } catch (Exception e) {
+            System.out.println("movePiecePosition Class Game Error, the piece does not belong to the current player");
+        }
+        try {
+            if (!getPossibleMoves(oldPos).contains(newPos)) {
+                throw new IllegalArgumentException();
+            }
+        } catch (Exception e) {
+            System.out.println("movePiecePosition Class Game Error, the move is not valid for the piece located at position oldPos");
         }
         board.setPiece(board.getPiece(oldPos), newPos);
         board.dropPiece(oldPos);
@@ -133,7 +170,7 @@ public class Game implements Model {
     /**
      * Get the possible moves for the piece located at specified position.
      *
-     * @param position the position of the piece
+     * @param position the current position of the piece
      * @return the list of admissible positions.
      */
     @Override
