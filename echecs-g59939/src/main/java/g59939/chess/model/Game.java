@@ -107,7 +107,7 @@ public class Game implements Model {
      * @throws IllegalArgumentException if 1) oldPos or newPos are not located
      * on the board, or 2) oldPos does not contain a piece, or 3) the piece does
      * not belong to the current player, or 4) the move is not valid for the
-     * piece located at position oldPos
+     * piece located at position oldPos Delete prints !!!
      */
     @Override
     public void movePiecePosition(Position oldPos, Position newPos) {
@@ -119,33 +119,36 @@ public class Game implements Model {
                 throw new IllegalArgumentException();
             }
         } catch (Exception e) {
-            System.out.println("movePiecePosition Class Game Error, old/new position out of board");
         }
         try {
             if (!board.isFree(oldPos)) {
                 throw new IllegalArgumentException();
             }
         } catch (Exception e) {
-            System.out.println("movePiecePosition Class Game Error, old position does not contain a piece");
         }
         try {
             if (getCurrentPlayer().getColor() != board.getPiece(oldPos).getColor()) {
                 throw new IllegalArgumentException();
             }
         } catch (Exception e) {
-            System.out.println("movePiecePosition Class Game Error, the piece does not belong to the current player");
         }
         try {
             if (!getPossibleMoves(oldPos).contains(newPos)) {
                 throw new IllegalArgumentException();
             }
         } catch (Exception e) {
-            System.out.println("movePiecePosition Class Game Error, the move is not valid for the piece located at position oldPos");
         }
-        board.setPiece(board.getPiece(oldPos), newPos);
-        board.dropPiece(oldPos);
-        if (!isGameOver()) {
-            currentPlayer = getOppositePlayer();
+
+        if (getPossibleMoves(oldPos).contains(newPos) && isCurrentPlayerPosition(oldPos)) {
+            board.setPiece(board.getPiece(oldPos), newPos);
+            board.dropPiece(oldPos);
+            if (!isGameOver()) {
+                currentPlayer = getOppositePlayer();
+            }
+
+        } else {
+            System.out.println("Wrong Mouvment");
+            currentPlayer = getCurrentPlayer();
         }
     }
 

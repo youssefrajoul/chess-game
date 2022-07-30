@@ -97,7 +97,7 @@ public class TextView implements View {
         System.out.println("Entrez un chiffre (1-8):");
         while (!scan.hasNextInt()) {
             scan.next();
-            System.out.println("Rien qu'un seul chiffre svp!!!");
+            displayError("Rien qu'un seul chiffre svp!!!");
             System.out.println("Entrez un chiffre (1-8):");
         }
         int input1 = scan.nextInt() - 1;
