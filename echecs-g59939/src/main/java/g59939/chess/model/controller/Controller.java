@@ -18,6 +18,9 @@ public class Controller {
         this.model = model;
     }
 
+    /**
+     * Treats and manage the hall chess game
+     */
     public void play() {
         boolean gameIsOver = false;
         view.displayTitle();
