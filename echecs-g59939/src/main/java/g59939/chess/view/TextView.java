@@ -97,12 +97,18 @@ public class TextView implements View {
         System.out.println("Entrez un chiffre (1-8):");
         while (!scan.hasNextInt()) {
             scan.next();
-            displayError("Rien qu'un seul chiffre svp!!!");
+            displayError("Rien qu'un seul chiffre entre 1 et 8 (inclus) svp!!!");
             System.out.println("Entrez un chiffre (1-8):");
         }
         int input1 = scan.nextInt() - 1;
         System.out.println("Entrez une lettre (a-h):");
         char input2 = scan.next().charAt(0);
+        while (!map.containsKey(input2)) {
+            displayError("Rien qu'une seul lettre entre a et h (inclus) svp!!!");
+            System.out.println("Entrez une lettre (a-h):");
+            input2 = scan.next().charAt(0);
+        }
+
         Position pos = new Position(input1, map.get(input2));
         return pos;
         /// to do // Lecture Robust
