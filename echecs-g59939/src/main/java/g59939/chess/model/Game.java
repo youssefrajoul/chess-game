@@ -95,7 +95,7 @@ public class Game implements Model {
         } catch (Exception e) {
             System.out.println("isCurrentPlayerPosition Class Game Error, The Position is out of board");
         }
-        return !board.containsOppositeColor(pos, getCurrentPlayer().getColor());
+        return board.getPositionsOccupiedBy(currentPlayer).contains(pos);
     }
 
     /**
@@ -139,7 +139,8 @@ public class Game implements Model {
         } catch (Exception e) {
         }
 
-        if (getPossibleMoves(oldPos).contains(newPos) && isCurrentPlayerPosition(oldPos)) {
+        if (board.contains(oldPos) && board.contains(newPos) && !board.isFree(oldPos)
+                && getPossibleMoves(oldPos).contains(newPos) && isCurrentPlayerPosition(oldPos)) {
             board.setPiece(board.getPiece(oldPos), newPos);
             board.dropPiece(oldPos);
             if (!isGameOver()) {
