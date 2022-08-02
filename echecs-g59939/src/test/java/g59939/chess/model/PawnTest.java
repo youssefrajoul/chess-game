@@ -1,5 +1,7 @@
 package g59939.chess.model;
 
+import g59939.chess.model.pieces.Pawn;
+import g59939.chess.model.pieces.Piece;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
@@ -9,13 +11,13 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /**
  *
- * @author HONOR
+ * @author g59939
  */
-public class PieceTest {
+public class PawnTest {
 
     Board board;
 
-    public PieceTest() {
+    public PawnTest() {
     }
 
     @BeforeEach
@@ -26,7 +28,7 @@ public class PieceTest {
     @Test
     public void testGetPossibleMovesPDirectionN() {
         System.out.println("getPossibleMoves DirectionN");
-        Piece piece = new Piece(Color.WHITE);
+        Piece piece = new Pawn(Color.WHITE);
         Position position = new Position(2, 4);
         board.setPiece(piece, position);
 
@@ -40,7 +42,7 @@ public class PieceTest {
     @Test
     public void testGetPossibleMovesPtest67() {
         System.out.println("getPossibleMoves test67");
-        Piece piece = new Piece(Color.WHITE);
+        Piece piece = new Pawn(Color.WHITE);
         Position position = new Position(6, 1);
         board.setPiece(piece, position);
 
@@ -54,7 +56,7 @@ public class PieceTest {
     @Test
     public void testGetPossibleMovesPDirectionNN() {
         System.out.println("getPossibleMoves DirectionNN");
-        Piece piece = new Piece(Color.WHITE);
+        Piece piece = new Pawn(Color.WHITE);
         Position position = new Position(1, 1);
         board.setPiece(piece, position);
 
@@ -68,9 +70,9 @@ public class PieceTest {
     @Test
     public void testGetPossibleMovesPDirectionNE() {
         System.out.println("getPossibleMoves DirectionNE");
-        Piece piece = new Piece(Color.WHITE);
+        Piece piece = new Pawn(Color.WHITE);
         Position position = new Position(1, 4);
-        Piece opponent1 = new Piece(Color.BLACK);
+        Piece opponent1 = new Pawn(Color.BLACK);
         Position opponentPosition1 = new Position(2, 5);
         board.setPiece(piece, position);
         board.setPiece(opponent1, opponentPosition1);
@@ -85,13 +87,13 @@ public class PieceTest {
     @Test
     public void testGetPossibleMovesPDirectionNENW() {
         System.out.println("getPossibleMoves DirectionNENW");
-        Piece piece = new Piece(Color.WHITE);
+        Piece piece = new Pawn(Color.WHITE);
         Position position = new Position(1, 4);
-        Piece opponent1 = new Piece(Color.BLACK);
+        Piece opponent1 = new Pawn(Color.BLACK);
         Position opponentPosition1 = new Position(2, 5);
-        Piece opponent2 = new Piece(Color.BLACK);
+        Piece opponent2 = new Pawn(Color.BLACK);
         Position opponentPosition2 = new Position(2, 4);
-        Piece opponent3 = new Piece(Color.BLACK);
+        Piece opponent3 = new Pawn(Color.BLACK);
         Position opponentPosition3 = new Position(2, 3);
         board.setPiece(piece, position);
         board.setPiece(opponent1, opponentPosition1);
@@ -108,11 +110,11 @@ public class PieceTest {
     @Test
     public void testGetPossibleMovesPDirectionNW() {
         System.out.println("getPossibleMoves DirectionNW");
-        Piece piece = new Piece(Color.WHITE);
+        Piece piece = new Pawn(Color.WHITE);
         Position position = new Position(1, 1);
-        Piece opponent1 = new Piece(Color.BLACK);
+        Piece opponent1 = new Pawn(Color.BLACK);
         Position opponentPosition1 = new Position(2, 1);
-        Piece opponent2 = new Piece(Color.BLACK);
+        Piece opponent2 = new Pawn(Color.BLACK);
         Position opponentPosition2 = new Position(2, 0);
         board.setPiece(piece, position);
         board.setPiece(opponent1, opponentPosition1);
@@ -128,7 +130,7 @@ public class PieceTest {
     @Test
     public void testGetPossibleMovesPDirectionNEdge() {
         System.out.println("getPossibleMoves DirectionN Edge");
-        Piece piece = new Piece(Color.WHITE);
+        Piece piece = new Pawn(Color.WHITE);
         Position position = new Position(7, 4);
         board.setPiece(piece, position);
 
@@ -142,7 +144,7 @@ public class PieceTest {
     @Test
     public void testGetPossibleMovesPDirectionNENWEdge() {
         System.out.println("getPossibleMoves DirectionN Edge");
-        Piece piece = new Piece(Color.WHITE);
+        Piece piece = new Pawn(Color.WHITE);
         Position position = new Position(3, 0);
         board.setPiece(piece, position);
 
@@ -157,7 +159,7 @@ public class PieceTest {
     @Test
     public void testGetPossibleMovesPDirectionS() {
         System.out.println("getPossibleMoves DirectionS");
-        Piece piece = new Piece(Color.BLACK);
+        Piece piece = new Pawn(Color.BLACK);
         Position position = new Position(5, 4);
         board.setPiece(piece, position);
 
@@ -171,7 +173,7 @@ public class PieceTest {
     @Test
     public void testGetPossibleMovesPDirectionSS() {
         System.out.println("getPossibleMoves DirectionSS");
-        Piece piece = new Piece(Color.BLACK);
+        Piece piece = new Pawn(Color.BLACK);
         Position position = new Position(6, 6);
         board.setPiece(piece, position);
 
@@ -185,9 +187,9 @@ public class PieceTest {
     @Test
     public void testGetPossibleMovesPDirectionSE() {
         System.out.println("getPossibleMoves DirectionSE");
-        Piece piece = new Piece(Color.BLACK);
+        Piece piece = new Pawn(Color.BLACK);
         Position position = new Position(6, 4);
-        Piece opponent1 = new Piece(Color.WHITE);
+        Piece opponent1 = new Pawn(Color.WHITE);
         Position opponentPosition1 = new Position(5, 5);
         board.setPiece(piece, position);
         board.setPiece(opponent1, opponentPosition1);
@@ -202,13 +204,13 @@ public class PieceTest {
     @Test
     public void testGetPossibleMovesPDirectionSESW() {
         System.out.println("getPossibleMoves DirectionSESW");
-        Piece piece = new Piece(Color.BLACK);
+        Piece piece = new Pawn(Color.BLACK);
         Position position = new Position(6, 4);
-        Piece opponent1 = new Piece(Color.WHITE);
+        Piece opponent1 = new Pawn(Color.WHITE);
         Position opponentPosition1 = new Position(5, 5);
-        Piece opponent2 = new Piece(Color.WHITE);
+        Piece opponent2 = new Pawn(Color.WHITE);
         Position opponentPosition2 = new Position(5, 4);
-        Piece opponent3 = new Piece(Color.WHITE);
+        Piece opponent3 = new Pawn(Color.WHITE);
         Position opponentPosition3 = new Position(5, 3);
         board.setPiece(piece, position);
         board.setPiece(opponent1, opponentPosition1);
@@ -225,11 +227,11 @@ public class PieceTest {
     @Test
     public void testGetPossibleMovesPDirectionSW() {
         System.out.println("getPossibleMoves DirectionSW");
-        Piece piece = new Piece(Color.BLACK);
+        Piece piece = new Pawn(Color.BLACK);
         Position position = new Position(6, 1);
-        Piece opponent1 = new Piece(Color.WHITE);
+        Piece opponent1 = new Pawn(Color.WHITE);
         Position opponentPosition1 = new Position(5, 1);
-        Piece opponent2 = new Piece(Color.WHITE);
+        Piece opponent2 = new Pawn(Color.WHITE);
         Position opponentPosition2 = new Position(5, 0);
         board.setPiece(piece, position);
         board.setPiece(opponent1, opponentPosition1);
@@ -245,7 +247,7 @@ public class PieceTest {
     @Test
     public void testGetPossibleMovesPDirectionSEdge() {
         System.out.println("getPossibleMoves DirectionS Edge");
-        Piece piece = new Piece(Color.BLACK);
+        Piece piece = new Pawn(Color.BLACK);
         Position position = new Position(0, 4);
         board.setPiece(piece, position);
 
@@ -259,7 +261,7 @@ public class PieceTest {
     @Test
     public void testGetPossibleMovesPDirectionSRightEdge() {
         System.out.println("getPossibleMoves DirectionS Right Edge");
-        Piece piece = new Piece(Color.BLACK);
+        Piece piece = new Pawn(Color.BLACK);
         Position position = new Position(4, 7);
         board.setPiece(piece, position);
 

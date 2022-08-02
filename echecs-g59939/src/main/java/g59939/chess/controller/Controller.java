@@ -1,4 +1,4 @@
-package g59939.chess.model.controller;
+package g59939.chess.controller;
 
 import g59939.chess.model.Model;
 import g59939.chess.model.Position;

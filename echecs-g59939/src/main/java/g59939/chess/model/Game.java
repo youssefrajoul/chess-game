@@ -1,5 +1,7 @@
 package g59939.chess.model;
 
+import g59939.chess.model.pieces.Pawn;
+import g59939.chess.model.pieces.Piece;
 import java.util.*;
 
 /**
@@ -26,8 +28,8 @@ public class Game implements Model {
     @Override
     public void start() {
         for (int i = 0; i < 8; i++) {
-            Piece whitePiece = new Piece(Color.WHITE);
-            Piece blackPiece = new Piece(Color.BLACK);
+            Piece whitePiece = new Pawn(Color.WHITE);
+            Piece blackPiece = new Pawn(Color.BLACK);
             board.setPiece(whitePiece, new Position(board.getInitialPawnRow(Color.WHITE), i));
             board.setPiece(blackPiece, new Position(board.getInitialPawnRow(Color.BLACK), i));
         }

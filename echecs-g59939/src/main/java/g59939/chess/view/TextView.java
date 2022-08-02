@@ -3,7 +3,7 @@ package g59939.chess.view;
 import g59939.chess.model.Board;
 import g59939.chess.model.Color;
 import g59939.chess.model.Model;
-import g59939.chess.model.Piece;
+import g59939.chess.model.pieces.Piece;
 import g59939.chess.model.Player;
 import g59939.chess.model.Position;
 import java.util.*;

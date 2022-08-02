@@ -1,5 +1,7 @@
 package g59939.chess.model;
 
+import g59939.chess.model.pieces.Piece;
+
 /**
  * Represents one square of the chess board
  *

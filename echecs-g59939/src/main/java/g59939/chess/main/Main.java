@@ -2,7 +2,7 @@ package g59939.chess.main;
 
 import g59939.chess.model.Game;
 import g59939.chess.model.Model;
-import g59939.chess.model.controller.Controller;
+import g59939.chess.controller.Controller;
 import g59939.chess.view.TextView;
 
 /**
