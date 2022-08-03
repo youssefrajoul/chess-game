@@ -41,7 +41,7 @@ public class TextView implements View {
     }
 
     /**
-     * Display the board of the Chess Game
+     * Display the board & pieces of the Chess Game
      */
     @Override
     public void displayBoard() {
@@ -71,11 +71,28 @@ public class TextView implements View {
                     if (model.getPiece(position) instanceof King) {
                         System.out.print("+W");
                     }
-                    if (model.getPiece(position) instanceof Pawn){
+                    if (model.getPiece(position) instanceof Pawn) {
                         System.out.print("PW");
                     }
                 } else if (model.getPiece(position).getColor() == Color.BLACK) {
-                    System.out.print("PB");
+                    if (model.getPiece(position) instanceof Rook) {
+                        System.out.print("RB");
+                    }
+                    if (model.getPiece(position) instanceof Knight) {
+                        System.out.print("KB");
+                    }
+                    if (model.getPiece(position) instanceof Bishop) {
+                        System.out.print("BB");
+                    }
+                    if (model.getPiece(position) instanceof Queen) {
+                        System.out.print("QB");
+                    }
+                    if (model.getPiece(position) instanceof King) {
+                        System.out.print("+B");
+                    }
+                    if (model.getPiece(position) instanceof Pawn) {
+                        System.out.print("PB");
+                    }
                 }
             }
             System.out.println("|");

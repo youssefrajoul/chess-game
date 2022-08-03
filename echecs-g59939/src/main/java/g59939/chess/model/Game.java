@@ -43,13 +43,13 @@ public class Game implements Model {
         Piece bishop = new Bishop(Color.WHITE);
         Piece queen = new Queen(Color.WHITE);
         Piece king = new King(Color.WHITE);
-        List<Piece> blackPieces = List.of(rook, knight, bishop, queen, king, bishop, knight, rook);
+        List<Piece> whitePieces = List.of(rook, knight, bishop, queen, king, bishop, knight, rook);
         Piece rook2 = new Rook(Color.BLACK);
         Piece knight2 = new Knight(Color.BLACK);
         Piece bishop2 = new Bishop(Color.BLACK);
         Piece queen2 = new Queen(Color.BLACK);
         Piece king2 = new King(Color.BLACK);
-        List<Piece> whitePieces = List.of(rook2, knight2, bishop2, queen2, king2, bishop2, knight2, rook2);
+        List<Piece> blackPieces = List.of(rook2, knight2, bishop2, queen2, king2, bishop2, knight2, rook2);
         for (int i = 0; i < blackPieces.size(); i++) {
             board.setPiece(blackPieces.get(i), new Position(7, i));
         }
