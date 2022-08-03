@@ -1,7 +1,12 @@
 package g59939.chess.model;
 
+import g59939.chess.model.pieces.Bishop;
+import g59939.chess.model.pieces.King;
+import g59939.chess.model.pieces.Knight;
 import g59939.chess.model.pieces.Pawn;
 import g59939.chess.model.pieces.Piece;
+import g59939.chess.model.pieces.Queen;
+import g59939.chess.model.pieces.Rook;
 import java.util.*;
 
 /**
@@ -28,10 +33,28 @@ public class Game implements Model {
     @Override
     public void start() {
         for (int i = 0; i < 8; i++) {
-            Piece whitePiece = new Pawn(Color.WHITE);
-            Piece blackPiece = new Pawn(Color.BLACK);
-            board.setPiece(whitePiece, new Position(board.getInitialPawnRow(Color.WHITE), i));
-            board.setPiece(blackPiece, new Position(board.getInitialPawnRow(Color.BLACK), i));
+            Piece whitePawn = new Pawn(Color.WHITE);
+            Piece blackPawn = new Pawn(Color.BLACK);
+            board.setPiece(whitePawn, new Position(board.getInitialPawnRow(Color.WHITE), i));
+            board.setPiece(blackPawn, new Position(board.getInitialPawnRow(Color.BLACK), i));
+        }
+        Piece rook = new Rook(Color.WHITE);
+        Piece knight = new Knight(Color.WHITE);
+        Piece bishop = new Bishop(Color.WHITE);
+        Piece queen = new Queen(Color.WHITE);
+        Piece king = new King(Color.WHITE);
+        List<Piece> blackPieces = List.of(rook, knight, bishop, queen, king, bishop, knight, rook);
+        Piece rook2 = new Rook(Color.WHITE);
+        Piece knight2 = new Knight(Color.WHITE);
+        Piece bishop2 = new Bishop(Color.WHITE);
+        Piece queen2 = new Queen(Color.WHITE);
+        Piece king2 = new King(Color.WHITE);
+        List<Piece> whitePieces = List.of(rook2, knight2, bishop2, queen2, king2, bishop2, knight2, rook2);
+        for (int i = 0; i < blackPieces.size(); i++) {
+            board.setPiece(blackPieces.get(i), new Position(7, i));
+        }
+        for (int i = 0; i < whitePieces.size(); i++) {
+            board.setPiece(whitePieces.get(i), new Position(0, i));
         }
         currentPlayer = white;
     }
