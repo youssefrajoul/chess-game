@@ -23,6 +23,88 @@ public class PieceTest {
     }
 
     @Test
+    void getPossibleMoves_white_king_generic_pos() {
+        Position position = new Position(3, 3);
+        Piece piece = new King(Color.WHITE);
+        board.setPiece(piece, position);
+
+        List<Position> expected = List.of(
+                new Position(2, 2),
+                new Position(3, 2),
+                new Position(4, 2),
+                new Position(4, 3),
+                new Position(2, 3),
+                new Position(3, 4),
+                new Position(4, 4),
+                new Position(2, 4)
+        );
+
+        List<Position> positions = piece.getPossibleMoves(position, board);
+
+        assertEqualsIgnoringOrder(expected, positions);
+    }
+
+    @Test
+    void getPossibleMoves_white_king_near_edge() {
+        Position position = new Position(0, 3);
+        var piece = new King(Color.WHITE);
+        board.setPiece(piece, position);
+
+        List<Position> expected = List.of(
+                new Position(0, 2),
+                new Position(1, 2),
+                new Position(1, 3),
+                new Position(0, 4),
+                new Position(1, 4)
+        );
+
+        List<Position> positions = piece.getPossibleMoves(position, board);
+
+        assertEqualsIgnoringOrder(expected, positions);
+    }
+
+    @Test
+    void getPossibleMoves_white_king_near_edge_with_opponent() {
+        Position position = new Position(0, 3);
+        var piece = new King(Color.WHITE);
+        board.setPiece(piece, position);
+
+        board.setPiece(new Pawn(Color.BLACK), new Position(1, 3));
+
+        List<Position> expected = List.of(
+                new Position(0, 2),
+                new Position(1, 2),
+                new Position(1, 3),
+                new Position(0, 4),
+                new Position(1, 4)
+        );
+
+        List<Position> positions = piece.getPossibleMoves(position, board);
+
+        assertEqualsIgnoringOrder(expected, positions);
+    }
+
+    @Test
+    void getPossibleMoves_white_king_near_edge_with_ownPiece() {
+        Position position = new Position(0, 3);
+        var piece = new King(Color.WHITE);
+        board.setPiece(piece, position);
+
+        board.setPiece(new Pawn(Color.WHITE), new Position(1, 3));
+
+        List<Position> expected = List.of(
+                new Position(0, 2),
+                new Position(0, 4),
+                new Position(1, 2),
+                new Position(1, 4)
+        );
+
+        List<Position> positions = piece.getPossibleMoves(position, board);
+
+        assertEqualsIgnoringOrder(expected, positions);
+    }
+
+    @Test
     void getPossibleMoves_white_knight_generic_pos() {
         Position position = new Position(3, 3);
         Knight knight = new Knight(Color.WHITE);
