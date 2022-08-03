@@ -62,25 +62,6 @@ public class Queen extends Piece {
         return possMovesList;
     }
 
-    /**
-     * Gets the next possible Position of the Queen in all directions
-     * @param numOfSteps the order of the position starting with 0 (nearest position)
-     * @param direction of the movement
-     * @param position the current position of the queen
-     * @return a possible next position for the queen
-     */
-    private Position nextPosition(int numOfSteps, Direction direction, Position position) {
-        List<Position> listNextPositions = List.of(
-                position.next(direction),
-                position.next(direction).next(direction),
-                position.next(direction).next(direction).next(direction),
-                position.next(direction).next(direction).next(direction).next(direction),
-                position.next(direction).next(direction).next(direction).next(direction).next(direction),
-                position.next(direction).next(direction).next(direction).next(direction).next(direction).next(direction),
-                position.next(direction).next(direction).next(direction).next(direction).next(direction).next(direction).next(direction),
-                position.next(direction).next(direction).next(direction).next(direction).next(direction).next(direction).next(direction).next(direction)
-        );
-        return listNextPositions.get(numOfSteps);
-    }
+
 
 }

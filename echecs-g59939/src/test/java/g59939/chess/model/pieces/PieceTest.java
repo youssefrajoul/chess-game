@@ -23,6 +23,91 @@ public class PieceTest {
     }
 
     @Test
+    void getPossibleMoves_white_rook_generic_pos() {
+        Position position = new Position(3, 3);
+        Piece piece = new Rook(Color.WHITE);
+        board.setPiece(piece, position);
+
+        List<Position> expected = List.of(
+                new Position(3, 0),
+                new Position(3, 1),
+                new Position(3, 2),
+                new Position(3, 4),
+                new Position(3, 5),
+                new Position(3, 6),
+                new Position(3, 7),
+                new Position(0, 3),
+                new Position(1, 3),
+                new Position(2, 3),
+                new Position(4, 3),
+                new Position(5, 3),
+                new Position(6, 3),
+                new Position(7, 3)
+        );
+
+        List<Position> positions = piece.getPossibleMoves(position, board);
+
+        assertEqualsIgnoringOrder(expected, positions);
+    }
+
+    @Test
+    void getPossibleMoves_white_rook_with_opponent() {
+        Position position = new Position(3, 3);
+        var piece = new Rook(Color.WHITE);
+        board.setPiece(piece, position);
+
+        board.setPiece(new Pawn(Color.BLACK), new Position(1, 3));
+
+        List<Position> expected = List.of(
+                new Position(3, 0),
+                new Position(3, 1),
+                new Position(3, 2),
+                new Position(3, 4),
+                new Position(3, 5),
+                new Position(3, 6),
+                new Position(3, 7),
+                new Position(1, 3),
+                new Position(2, 3),
+                new Position(4, 3),
+                new Position(5, 3),
+                new Position(6, 3),
+                new Position(7, 3)
+        );
+
+        List<Position> positions = piece.getPossibleMoves(position, board);
+
+        assertEqualsIgnoringOrder(expected, positions);
+    }
+
+    @Test
+    void getPossibleMoves_white_rook_with_ownPiece() {
+        Position position = new Position(3, 3);
+        var piece = new Rook(Color.WHITE);
+        board.setPiece(piece, position);
+
+        board.setPiece(new Pawn(Color.WHITE), new Position(1, 3));
+
+        List<Position> expected = List.of(
+                new Position(3, 0),
+                new Position(3, 1),
+                new Position(3, 2),
+                new Position(3, 4),
+                new Position(3, 5),
+                new Position(3, 6),
+                new Position(3, 7),
+                new Position(2, 3),
+                new Position(4, 3),
+                new Position(5, 3),
+                new Position(6, 3),
+                new Position(7, 3)
+        );
+
+        List<Position> positions = piece.getPossibleMoves(position, board);
+
+        assertEqualsIgnoringOrder(expected, positions);
+    }
+
+    @Test
     void getPossibleMoves_white_queen_generic_pos() {
         Position position = new Position(3, 3);
         Piece piece = new Queen(Color.WHITE);

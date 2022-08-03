@@ -43,21 +43,44 @@ public abstract class Piece {
     public abstract List<Position> getPossibleMoves(Position position, Board board);
 
     /**
-     * 
+     *
      * @param position
      * @param board
-     * @return 
+     * @return
      */
     public List<Position> getCapturePositions(Position position, Board board) {
         List<Position> listPossibleMoves = getPossibleMoves(position, board);
         List<Position> listCapturePositions = new ArrayList<>();
         Iterator<Position> iterator = listPossibleMoves.iterator();
-        while (iterator.hasNext()) { 
+        while (iterator.hasNext()) {
             Position possiblePosition = iterator.next();
             if (board.containsOppositeColor(possiblePosition, board.getPiece(position).getColor())) {
                 listCapturePositions.add(possiblePosition);
             }
         }
         return listCapturePositions;
+    }
+
+    /**
+     * Gets the next possible Position of the Queen in all directions
+     *
+     * @param numOfSteps the order of the position starting with 0 (nearest
+     * position)
+     * @param direction of the movement
+     * @param position the current position of the queen
+     * @return a possible next position for the queen
+     */
+    protected Position nextPosition(int numOfSteps, Direction direction, Position position) {
+        List<Position> listNextPositions = List.of(
+                position.next(direction),
+                position.next(direction).next(direction),
+                position.next(direction).next(direction).next(direction),
+                position.next(direction).next(direction).next(direction).next(direction),
+                position.next(direction).next(direction).next(direction).next(direction).next(direction),
+                position.next(direction).next(direction).next(direction).next(direction).next(direction).next(direction),
+                position.next(direction).next(direction).next(direction).next(direction).next(direction).next(direction).next(direction),
+                position.next(direction).next(direction).next(direction).next(direction).next(direction).next(direction).next(direction).next(direction)
+        );
+        return listNextPositions.get(numOfSteps);
     }
 }
