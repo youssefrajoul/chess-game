@@ -6,6 +6,12 @@ import g59939.chess.model.Model;
 import g59939.chess.model.pieces.Piece;
 import g59939.chess.model.Player;
 import g59939.chess.model.Position;
+import g59939.chess.model.pieces.Bishop;
+import g59939.chess.model.pieces.King;
+import g59939.chess.model.pieces.Knight;
+import g59939.chess.model.pieces.Pawn;
+import g59939.chess.model.pieces.Queen;
+import g59939.chess.model.pieces.Rook;
 import java.util.*;
 
 /**
@@ -49,8 +55,26 @@ public class TextView implements View {
                 if (model.getPiece(position) == null) {
                     System.out.print("  ");
                 } else if (model.getPiece(position).getColor() == Color.WHITE) {
-                    System.out.print("PW");
-                } else {
+
+                    if (model.getPiece(position) instanceof Rook) {
+                        System.out.print("RW");
+                    }
+                    if (model.getPiece(position) instanceof Knight) {
+                        System.out.print("KW");
+                    }
+                    if (model.getPiece(position) instanceof Bishop) {
+                        System.out.print("BW");
+                    }
+                    if (model.getPiece(position) instanceof Queen) {
+                        System.out.print("QW");
+                    }
+                    if (model.getPiece(position) instanceof King) {
+                        System.out.print("+W");
+                    }
+                    if (model.getPiece(position) instanceof Pawn){
+                        System.out.print("PW");
+                    }
+                } else if (model.getPiece(position).getColor() == Color.BLACK) {
                     System.out.print("PB");
                 }
             }
@@ -103,7 +127,7 @@ public class TextView implements View {
         int input1 = scan.nextInt() - 1;
         System.out.println("Entrez une lettre (a-h):");
         String input2 = scan.next();
-        while (!map.containsKey(input2) || input2.length()>1) {
+        while (!map.containsKey(input2) || input2.length() > 1) {
             displayError("Rien qu'une seul lettre entre a et h (inclus) svp!!!");
             System.out.println("Entrez une lettre (a-h):");
             input2 = scan.next();
