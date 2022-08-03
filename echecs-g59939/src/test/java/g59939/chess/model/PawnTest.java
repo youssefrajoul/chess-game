@@ -1,5 +1,6 @@
 package g59939.chess.model;
 
+import g59939.chess.model.pieces.Bishop;
 import g59939.chess.model.pieces.Pawn;
 import g59939.chess.model.pieces.Piece;
 import java.util.ArrayList;
@@ -23,6 +24,86 @@ public class PawnTest {
     @BeforeEach
     public void setUp() {
         board = new Board();
+    }
+
+    @Test
+    void getPossibleMoves_white_bishop_generic_pos() {
+        Position position = new Position(3, 3);
+        Piece piece = new Bishop(Color.WHITE);
+        board.setPiece(piece, position);
+
+        List<Position> expected = List.of(
+                new Position(7, 7),
+                new Position(6, 6),
+                new Position(5, 5),
+                new Position(4, 4),
+                new Position(2, 2),
+                new Position(1, 1),
+                new Position(0, 0),
+                new Position(2, 4),
+                new Position(1, 5),
+                new Position(0, 6),
+                new Position(4, 2),
+                new Position(5, 1),
+                new Position(6, 0)
+        );
+
+        List<Position> positions = piece.getPossibleMoves(position, board);
+
+        assertEqualsIgnoringOrder(expected, positions);
+    }
+
+    @Test
+    void getPossibleMoves_white_bishop_with_opponent() {
+        Position position = new Position(3, 3);
+        var piece = new Bishop(Color.WHITE);
+        board.setPiece(piece, position);
+
+        board.setPiece(new Pawn(Color.BLACK), new Position(5, 5));
+
+        List<Position> expected = List.of(
+                new Position(5, 5),
+                new Position(4, 4),
+                new Position(2, 2),
+                new Position(1, 1),
+                new Position(0, 0),
+                new Position(2, 4),
+                new Position(1, 5),
+                new Position(0, 6),
+                new Position(4, 2),
+                new Position(5, 1),
+                new Position(6, 0)
+        );
+
+        List<Position> positions = piece.getPossibleMoves(position, board);
+
+        assertEqualsIgnoringOrder(expected, positions);
+    }
+
+    @Test
+    void getPossibleMoves_white_bishop_with_ownPiece() {
+        Position position = new Position(3, 3);
+        var piece = new Bishop(Color.WHITE);
+        board.setPiece(piece, position);
+
+        board.setPiece(new Pawn(Color.WHITE), new Position(5, 5));
+
+        List<Position> expected = List.of(
+                new Position(4, 4),
+                new Position(2, 2),
+                new Position(1, 1),
+                new Position(0, 0),
+                new Position(2, 4),
+                new Position(1, 5),
+                new Position(0, 6),
+                new Position(4, 2),
+                new Position(5, 1),
+                new Position(6, 0)
+        );
+
+        List<Position> positions = piece.getPossibleMoves(position, board);
+
+        assertEqualsIgnoringOrder(expected, positions);
     }
 
     @Test

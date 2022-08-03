@@ -8,38 +8,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Represents the Queen of the chess game
+ * Represents the Rook of the chess game
  *
- * @author g59939
+ * @author HONOR
  */
-public class Queen extends Piece {
+public class Bishop extends Piece {
 
-    /**
-     * Constructor of the Class
-     *
-     * @param color
-     */
-    public Queen(Color color) {
+    public Bishop(Color color) {
         super(color);
     }
 
-    /**
-     * Gets the list of possible moves for Queen
-     *
-     * @param position the current position of the Queen
-     * @param board the chess game board
-     * @return a list of all possible moves for Queen
-     */
     @Override
     public List<Position> getPossibleMoves(Position position, Board board) {
         List<Position> possMovesList = new ArrayList<>();
         List<Direction> listOfDirections = List.of(
-                (Direction.N),
                 (Direction.NE),
                 (Direction.NW),
-                (Direction.E),
-                (Direction.W),
-                (Direction.S),
                 (Direction.SE),
                 (Direction.SW)
         );
