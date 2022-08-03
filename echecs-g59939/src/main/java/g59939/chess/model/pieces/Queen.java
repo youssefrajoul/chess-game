@@ -8,13 +8,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * Represents the Queen of the chess game
  * @author g59939
  */
 public class Queen extends Piece {
 
     /**
-     *
+     * Constructor of the Class
      * @param color
      */
     public Queen(Color color) {
@@ -22,10 +22,11 @@ public class Queen extends Piece {
     }
 
     /**
+     * Gets the list of possible moves for Queen
      *
-     * @param position
-     * @param board
-     * @return
+     * @param position the current position of the Queen
+     * @param board the chess game board
+     * @return a list of all possible moves for Queen
      */
     @Override
     public List<Position> getPossibleMoves(Position position, Board board) {
@@ -61,8 +62,15 @@ public class Queen extends Piece {
         return possMovesList;
     }
 
-    private Position nextPosition(int numOfMoves, Direction direction, Position position) {
-        List<Position> list = List.of(
+    /**
+     * Gets the next possible Position of the Queen in all directions
+     * @param numOfSteps the order of the position starting with 0 (nearest position)
+     * @param direction of the movement
+     * @param position the current position of the queen
+     * @return a possible next position for the queen
+     */
+    private Position nextPosition(int numOfSteps, Direction direction, Position position) {
+        List<Position> listNextPositions = List.of(
                 position.next(direction),
                 position.next(direction).next(direction),
                 position.next(direction).next(direction).next(direction),
@@ -72,7 +80,7 @@ public class Queen extends Piece {
                 position.next(direction).next(direction).next(direction).next(direction).next(direction).next(direction).next(direction),
                 position.next(direction).next(direction).next(direction).next(direction).next(direction).next(direction).next(direction).next(direction)
         );
-        return list.get(numOfMoves);
+        return listNextPositions.get(numOfSteps);
     }
 
 }
