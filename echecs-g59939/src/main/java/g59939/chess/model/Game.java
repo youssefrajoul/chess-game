@@ -185,29 +185,20 @@ public class Game implements Model {
         } else {
             oppositePlayerKing = whiteKing;
         }
-        if (board.contains(oldPos) && board.contains(newPos) && !board.isFree(oldPos)
-                && isValidMove(oldPos, newPos) && isCurrentPlayerPosition(oldPos)) {
-            board.setPiece(board.getPiece(oldPos), newPos);
-            board.dropPiece(oldPos);
-            if (getCapturePositions(getCurrentPlayer()).contains(board.getPiecePosition(oppositePlayerKing))
-                    && getPossibleMoves(newPos).retainAll(getPossibleMoves(board.getPiecePosition(oppositePlayerKing)))) {
-                state = GameState.CHECK_MATE;
-            } else if (getCapturePositions(getCurrentPlayer()).contains(board.getPiecePosition(oppositePlayerKing))
-                    && getPossibleMoves(newPos).retainAll(getPossibleMoves(board.getPiecePosition(oppositePlayerKing)))
-                    && !getCapturePositions(getOppositePlayer()).contains(newPos)) {
-                state = GameState.STALE_MATE;
-            } else if (getCapturePositions(getCurrentPlayer()).contains(board.getPiecePosition(oppositePlayerKing))) {
-                state = GameState.CHECK;
-            } else {
-                state = GameState.PLAY;
-            }
-            if (state == GameState.PLAY) {
-                currentPlayer = getOppositePlayer();
-            }
-        } else {
-            System.out.println("Wrong Mouvment");
-            currentPlayer = getCurrentPlayer();
+        board.setPiece(board.getPiece(oldPos), newPos);
+        board.dropPiece(oldPos);
+        if (isValidMove(oldPos, newPos) && getCapturePositions(getOppositePlayer()).contains(oldPos)) {
+            state = GameState.PLAY;
+        } else if (getCapturePositions(getCurrentPlayer()).contains(board.getPiecePosition(oppositePlayerKing))
+                && getPossibleMoves(board.getPiecePosition(oppositePlayerKing)).isEmpty()) {
+            state = GameState.CHECK_MATE;
+        } else if (getCapturePositions(getCurrentPlayer()).contains(board.getPiecePosition(oppositePlayerKing))
+                && !getPossibleMoves(board.getPiecePosition(oppositePlayerKing)).isEmpty()) {
+            state = GameState.CHECK;
+        } else if (!getCapturePositions(getCurrentPlayer()).contains(board.getPiecePosition(oppositePlayerKing))) {
+            state = GameState.STALE_MATE;
         }
+        currentPlayer = getOppositePlayer();
     }
 
 //    /**
@@ -238,7 +229,7 @@ public class Game implements Model {
     }
 
     /**
-     * Gets if the move is valid or not
+     * Check if the move is valid or not
      *
      * @param oldPos the current position of the piece
      * @param newPos the next possible position of the piece that we want to
@@ -249,20 +240,24 @@ public class Game implements Model {
     public boolean isValidMove(Position oldPos, Position newPos) {
         try {
             if (board.isFree(oldPos)) {
-                throw new IllegalArgumentException();
+                throw new IllegalArgumentException("Error is validMove old pos is free");
             }
         } catch (Exception e) {
         }
         try {
             if (!getPossibleMoves(oldPos).contains(newPos)) {
-                throw new IllegalArgumentException();
+                throw new IllegalArgumentException("Error is validMove getpossiblemoves");
             }
+
         } catch (Exception e) {
         }
-        List<Position> concatenated_list = new ArrayList<>();
-        concatenated_list = Stream.concat(getPossibleMoves(oldPos).stream(), getCapturePositions(currentPlayer).stream())
-                .collect(Collectors.toList());
-        return concatenated_list.contains(newPos);
+        if (getCapturePositions(getOppositePlayer()).contains(newPos)) {
+            return false;
+        } else if (getCapturePositions(getOppositePlayer()).contains(oldPos) && getCapturePositions(getOppositePlayer()).contains(newPos)) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
     /**
@@ -273,13 +268,11 @@ public class Game implements Model {
      * @return list of capture positions
      */
     private List<Position> getCapturePositions(Player player) {
-        List<Position> listOfPositionsOccu = board.getPositionsOccupiedBy(player);
-        List<Position> listCapturePositions = new ArrayList<>();
-        Iterator<Position> iterator = listOfPositionsOccu.iterator();
-        while (iterator.hasNext()) {
-            Position pos = iterator.next();
-            listCapturePositions.addAll(board.getPiece(pos).getCapturePositions(pos, board));
+        List<Position> list_Positions_Occu = board.getPositionsOccupiedBy(player);
+        List<Position> list_Capture_Positions = new ArrayList<>();
+        for (int i = 0; i < list_Positions_Occu.size(); i++) {
+            list_Capture_Positions.retainAll(getPiece(list_Positions_Occu.get(i)).getCapturePositions(list_Positions_Occu.get(i), board));
         }
-        return listCapturePositions;
+        return list_Capture_Positions;
     }
 }

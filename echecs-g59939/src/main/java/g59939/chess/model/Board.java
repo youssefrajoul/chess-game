@@ -121,8 +121,8 @@ public class Board {
      * Color(Player)
      *
      * @param pos Object of type Position represents the position in the board
-     * @param col Object of type Color represents the color of the piece
-     * @return True if the position has a different color player or False
+     * @param col Object of type Color represents the color of the current player
+     * @return True if the position has a different color from the current player or False
      * otherwise
      */
     public boolean containsOppositeColor(Position pos, Color col) {

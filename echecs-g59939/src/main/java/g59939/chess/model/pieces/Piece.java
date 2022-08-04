@@ -50,20 +50,21 @@ public abstract class Piece {
      * @return a list of Positions
      */
     public List<Position> getCapturePositions(Position position, Board board) {
-        List<Position> listPossibleMoves = getPossibleMoves(position, board);
-        List<Position> listCapturePositions = new ArrayList<>();
-        Iterator<Position> iterator = listPossibleMoves.iterator();
-        while (iterator.hasNext()) {
-            Position possiblePosition = iterator.next();
-            if (board.containsOppositeColor(possiblePosition, board.getPiece(position).getColor())) {
-                listCapturePositions.add(possiblePosition);
-            }
-        }
-        return listCapturePositions;
+//        List<Position> listPossibleMoves = getPossibleMoves(position, board);
+//        List<Position> listCapturePositions = new ArrayList<>();
+//        Iterator<Position> iterator = listPossibleMoves.iterator();
+//        while (iterator.hasNext()) {
+//            Position possiblePosition = iterator.next();
+//            if (board.containsOppositeColor(possiblePosition, board.getPiece(position).getColor())) {
+//                listCapturePositions.add(possiblePosition);
+//            }
+//        }
+//        listCapturePositions.retainAll(listPossibleMoves);
+        return getPossibleMoves(position, board);
     }
 
     /**
-     * Gets the next possible Position of the Queen in all directions
+     * Gets the next possible Position of the Piece in all directions
      *
      * @param numOfSteps the order of the position starting with 0 (nearest
      * position)
