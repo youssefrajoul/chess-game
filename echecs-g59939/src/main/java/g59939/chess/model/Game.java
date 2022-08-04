@@ -179,38 +179,53 @@ public class Game implements Model {
             }
         } catch (Exception e) {
         }
-
+        Piece oppositePlayerKing = null;
+        if (getCurrentPlayer().getColor() == Color.WHITE) {
+            oppositePlayerKing = blackKing;
+        } else {
+            oppositePlayerKing = whiteKing;
+        }
         if (board.contains(oldPos) && board.contains(newPos) && !board.isFree(oldPos)
-                && getPossibleMoves(oldPos).contains(newPos) && isCurrentPlayerPosition(oldPos)) {
+                && isValidMove(oldPos, newPos) && isCurrentPlayerPosition(oldPos)) {
             board.setPiece(board.getPiece(oldPos), newPos);
             board.dropPiece(oldPos);
-            if (!isGameOver()) {
+            if (getCapturePositions(getCurrentPlayer()).contains(board.getPiecePosition(oppositePlayerKing))
+                    && getPossibleMoves(newPos).retainAll(getPossibleMoves(board.getPiecePosition(oppositePlayerKing)))) {
+                state = GameState.CHECK_MATE;
+            } else if (!getCapturePositions(getCurrentPlayer()).contains(board.getPiecePosition(oppositePlayerKing))
+                    && getPossibleMoves(newPos).retainAll(getPossibleMoves(board.getPiecePosition(oppositePlayerKing)))
+                    && !getCapturePositions(getOppositePlayer()).contains(newPos)) {
+                state = GameState.STALE_MATE;
+            } else if (getCapturePositions(getCurrentPlayer()).contains(board.getPiecePosition(oppositePlayerKing))) {
+                state = GameState.CHECK;
+            } else {
+                state = GameState.PLAY;
+            }
+            if (state == GameState.PLAY) {
                 currentPlayer = getOppositePlayer();
             }
-
         } else {
             System.out.println("Wrong Mouvment");
             currentPlayer = getCurrentPlayer();
         }
     }
 
-    /**
-     * Check if the game is over or not
-     *
-     * @return true if the game is over, false otherwise.
-     */
-    @Override
-    public boolean isGameOver() {
-        List<Position> occupiedPosition = board.getPositionsOccupiedBy(getCurrentPlayer());
-        boolean gameOver = true;
-        for (int i = 0; i < occupiedPosition.size(); i++) {
-            if (!getPossibleMoves(occupiedPosition.get(i)).isEmpty()) {
-                gameOver = false;
-            }
-        }
-        return gameOver;
-    }
-
+//    /**
+//     * Check if the game is over or not
+//     *
+//     * @return true if the game is over, false otherwise.
+//     */
+//    @Override
+//    public boolean isGameOver() {
+//        List<Position> occupiedPosition = board.getPositionsOccupiedBy(getCurrentPlayer());
+//        boolean gameOver = true;
+//        for (int i = 0; i < occupiedPosition.size(); i++) {
+//            if (!getPossibleMoves(occupiedPosition.get(i)).isEmpty()) {
+//                gameOver = false;
+//            }
+//        }
+//        return gameOver;
+//    }
     /**
      * Get the possible moves for the piece located at specified position.
      *

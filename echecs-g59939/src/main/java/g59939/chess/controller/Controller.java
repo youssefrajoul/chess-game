@@ -1,5 +1,6 @@
 package g59939.chess.controller;
 
+import g59939.chess.model.GameState;
 import g59939.chess.model.Model;
 import g59939.chess.model.Position;
 import g59939.chess.view.View;
@@ -22,18 +23,28 @@ public class Controller {
      * Treats and manage the hall chess game
      */
     public void play() {
-        boolean gameIsOver = false;
+        GameState state = GameState.PLAY;
         view.displayTitle();
         model.start();
-        while (!gameIsOver) {
+        while (state == GameState.PLAY) {
             view.displayBoard();
             view.displayPlayer();
             Position oldPos = view.askPosition();
             Position newPos = view.askPosition();
             model.movePiecePosition(oldPos, newPos);
-            gameIsOver = model.isGameOver();
-            if (gameIsOver) {
-                view.displayWinner();
+            state = model.getState();
+            if (null != state) switch (state) {
+                case CHECK_MATE -> {
+                    view.displayBoard();
+                    view.displayWinner();
+                }
+                case STALE_MATE -> {
+                    System.out.println("*** Game Over ***");
+                    System.out.println("Draw for this match");
+                }
+                case CHECK -> System.out.println(model.getOppositePlayer() + " King is in check");
+                default -> {
+                }
             }
         }
     }
