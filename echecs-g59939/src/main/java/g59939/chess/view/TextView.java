@@ -37,7 +37,7 @@ public class TextView implements View {
      */
     @Override
     public void displayTitle() {
-        System.out.println("Welcome to ESI Chess Game");
+        System.out.println("Welcome to ESI Chess Game (g59939)");
     }
 
     /**
@@ -55,7 +55,6 @@ public class TextView implements View {
                 if (model.getPiece(position) == null) {
                     System.out.print("  ");
                 } else if (model.getPiece(position).getColor() == Color.WHITE) {
-
                     if (model.getPiece(position) instanceof Rook) {
                         System.out.print("RW");
                     }
@@ -133,20 +132,20 @@ public class TextView implements View {
         map.put("f", 5);
         map.put("g", 6);
         map.put("h", 7);
-        System.out.println("Veuillez entrez une position valide.");
+        System.out.println("Move a Piece");
         Scanner scan = new Scanner(System.in);
-        System.out.println("Entrez un chiffre (1-8):");
+        System.out.println("Pick a Row line (1-8):");
         while (!scan.hasNextInt()) {
             scan.next();
-            displayError("Rien qu'un seul chiffre entre 1 et 8 (inclus) svp!!!");
-            System.out.println("Entrez un chiffre (1-8):");
+            displayError("You must chose a num between 1 & 8");
+            System.out.println("Pick a Row line (1-8):");
         }
         int input1 = scan.nextInt() - 1;
-        System.out.println("Entrez une lettre (a-h):");
+        System.out.println("Pick a column line (a-h):");
         String input2 = scan.next();
         while (!map.containsKey(input2) || input2.length() > 1) {
-            displayError("Rien qu'une seul lettre entre a et h (inclus) svp!!!");
-            System.out.println("Entrez une lettre (a-h):");
+            displayError("You must chose a letter between a & h");
+            System.out.println("Pick a column line (a-h):");
             input2 = scan.next();
         }
 
