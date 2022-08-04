@@ -21,6 +21,7 @@ public class Game implements Model {
     private Player currentPlayer;
     private King whiteKing;
     private King blackKing;
+    private GameState state;
 
     public Game() {
         white = new Player(Color.WHITE);
@@ -58,7 +59,18 @@ public class Game implements Model {
         for (int i = 0; i < whitePieces.size(); i++) {
             board.setPiece(whitePieces.get(i), new Position(0, i));
         }
+        state = GameState.PLAY;
         currentPlayer = white;
+    }
+
+    /**
+     * Gets the current state of the game
+     *
+     * @return the state
+     */
+    @Override
+    public GameState getState() {
+        return state;
     }
 
     /**

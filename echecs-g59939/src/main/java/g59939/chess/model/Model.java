@@ -16,6 +16,13 @@ public interface Model {
     public void start();
 
     /**
+     * Gets the current state of the game
+     *
+     * @return the state (PLAY / CHECK / CHECK_MATE / STALE_MATE)
+     */
+    public GameState getState();
+
+    /**
      * Get the piece of the board located on a given position
      *
      * @param pos the position
@@ -56,11 +63,10 @@ public interface Model {
      *
      * @param oldPos the current position
      * @param newPos the new position of the board where to put the piece
-     * @throws IllegalArgumentException if 
-     * 1) oldPos or newPos are not located on the board, or 
-     * 2) oldPos does not contain a piece, or 
-     * 3) the piece does not belong to the current player, or 
-     * 4) the move is not valid for the piece located at position oldPos
+     * @throws IllegalArgumentException if 1) oldPos or newPos are not located
+     * on the board, or 2) oldPos does not contain a piece, or 3) the piece does
+     * not belong to the current player, or 4) the move is not valid for the
+     * piece located at position oldPos
      */
     public void movePiecePosition(Position oldPos, Position newPos);
 

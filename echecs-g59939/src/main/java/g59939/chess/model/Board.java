@@ -164,7 +164,8 @@ public class Board {
     }
 
     /**
-     *  Gets the position of the piece in parameter
+     * Gets the position of the piece in parameter (white & black kings)
+     *
      * @param piece the piece that we want to get its position
      * @return the position of the piece in the board
      */
