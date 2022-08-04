@@ -85,4 +85,14 @@ public interface Model {
      */
     public List<Position> getPossibleMoves(Position position);
 
+    /**
+     * Gets if the move is valid or not
+     *
+     * @param oldPos the current position of the piece
+     * @param newPos the next possible position of the piece that we want to
+     * check
+     * @return true if the move can be done or false otherwise
+     */
+    public boolean isValidMove(Position oldPos, Position newPos);
+
 }

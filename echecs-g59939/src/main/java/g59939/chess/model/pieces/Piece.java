@@ -43,10 +43,11 @@ public abstract class Piece {
     public abstract List<Position> getPossibleMoves(Position position, Board board);
 
     /**
+     * Gets the positions where the piece can capture opponents pieces
      *
-     * @param position
-     * @param board
-     * @return
+     * @param position the current position of the piece
+     * @param board the board of the chess game
+     * @return a list of Positions
      */
     public List<Position> getCapturePositions(Position position, Board board) {
         List<Position> listPossibleMoves = getPossibleMoves(position, board);

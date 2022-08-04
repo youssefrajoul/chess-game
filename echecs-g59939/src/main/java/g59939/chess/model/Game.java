@@ -8,6 +8,8 @@ import g59939.chess.model.pieces.Piece;
 import g59939.chess.model.pieces.Queen;
 import g59939.chess.model.pieces.Rook;
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  *
@@ -218,5 +220,51 @@ public class Game implements Model {
     @Override
     public List<Position> getPossibleMoves(Position position) {
         return board.getPiece(position).getPossibleMoves(position, board);
+    }
+
+    /**
+     * Gets if the move is valid or not
+     *
+     * @param oldPos the current position of the piece
+     * @param newPos the next possible position of the piece that we want to
+     * check
+     * @return true if the move can be done or false otherwise
+     */
+    @Override
+    public boolean isValidMove(Position oldPos, Position newPos) {
+        try {
+            if (board.isFree(oldPos)) {
+                throw new IllegalArgumentException();
+            }
+        } catch (Exception e) {
+        }
+        try {
+            if (!getPossibleMoves(oldPos).contains(newPos)) {
+                throw new IllegalArgumentException();
+            }
+        } catch (Exception e) {
+        }
+        List<Position> concatenated_list = new ArrayList<>();
+        concatenated_list = Stream.concat(getPossibleMoves(oldPos).stream(), getCapturePositions(currentPlayer).stream())
+                .collect(Collectors.toList());
+        return concatenated_list.contains(newPos);
+    }
+
+    /**
+     * Gets the list of positions where the player can capture the opponents
+     * pieces
+     *
+     * @param player the current player
+     * @return list of capture positions
+     */
+    private List<Position> getCapturePositions(Player player) {
+        List<Position> listOfPositionsOccu = board.getPositionsOccupiedBy(player);
+        List<Position> listCapturePositions = new ArrayList<>();
+        Iterator<Position> iterator = listOfPositionsOccu.iterator();
+        while (iterator.hasNext()) {
+            Position pos = iterator.next();
+            listCapturePositions.addAll(board.getPiece(pos).getCapturePositions(pos, board));
+        }
+        return listCapturePositions;
     }
 }
