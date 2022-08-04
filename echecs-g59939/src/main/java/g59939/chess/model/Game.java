@@ -19,6 +19,8 @@ public class Game implements Model {
     private Player white;
     private Player black;
     private Player currentPlayer;
+    private King whiteKing;
+    private King blackKing;
 
     public Game() {
         white = new Player(Color.WHITE);
@@ -38,18 +40,18 @@ public class Game implements Model {
             board.setPiece(whitePawn, new Position(board.getInitialPawnRow(Color.WHITE), i));
             board.setPiece(blackPawn, new Position(board.getInitialPawnRow(Color.BLACK), i));
         }
-        Piece rook = new Rook(Color.WHITE);
-        Piece knight = new Knight(Color.WHITE);
-        Piece bishop = new Bishop(Color.WHITE);
-        Piece queen = new Queen(Color.WHITE);
-        Piece king = new King(Color.WHITE);
-        List<Piece> whitePieces = List.of(rook, knight, bishop, queen, king, bishop, knight, rook);
-        Piece rook2 = new Rook(Color.BLACK);
-        Piece knight2 = new Knight(Color.BLACK);
-        Piece bishop2 = new Bishop(Color.BLACK);
-        Piece queen2 = new Queen(Color.BLACK);
-        Piece king2 = new King(Color.BLACK);
-        List<Piece> blackPieces = List.of(rook2, knight2, bishop2, queen2, king2, bishop2, knight2, rook2);
+        Piece whiteRook = new Rook(Color.WHITE);
+        Piece whiteKnight = new Knight(Color.WHITE);
+        Piece whiteBishop = new Bishop(Color.WHITE);
+        Piece whiteQueen = new Queen(Color.WHITE);
+        whiteKing = new King(Color.WHITE);
+        List<Piece> whitePieces = List.of(whiteRook, whiteKnight, whiteBishop, whiteQueen, whiteKing, whiteBishop, whiteKnight, whiteRook);
+        Piece blackRook = new Rook(Color.BLACK);
+        Piece blackKnight = new Knight(Color.BLACK);
+        Piece blackBishop = new Bishop(Color.BLACK);
+        Piece blackQueen = new Queen(Color.BLACK);
+        blackKing = new King(Color.BLACK);
+        List<Piece> blackPieces = List.of(blackRook, blackKnight, blackBishop, blackQueen, blackKing, blackBishop, blackKnight, blackRook);
         for (int i = 0; i < blackPieces.size(); i++) {
             board.setPiece(blackPieces.get(i), new Position(7, i));
         }

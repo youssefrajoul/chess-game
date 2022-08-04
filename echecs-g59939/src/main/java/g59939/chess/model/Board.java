@@ -38,7 +38,7 @@ public class Board {
     /**
      * Sets a chess piece in the position passed in parameters
      *
-     * @param piece object of type Piece 
+     * @param piece object of type Piece
      * @param position object of type Position, Where to put the piece
      */
     public void setPiece(Piece piece, Position position) {
@@ -47,7 +47,7 @@ public class Board {
                 throw new IllegalArgumentException();
             }
         } catch (Exception e) {
-            
+
         }
         tableau[position.getRow()][position.getColumn()].setPiece(piece);
     }
@@ -64,7 +64,7 @@ public class Board {
                 throw new IllegalArgumentException();
             }
         } catch (Exception e) {
-            
+
         }
         return tableau[pos.getRow()][pos.getColumn()].getPiece();
     }
@@ -94,7 +94,7 @@ public class Board {
                 throw new IllegalArgumentException();
             }
         } catch (Exception e) {
-            
+
         }
         tableau[pos.getRow()][pos.getColumn()].setPiece(null);
     }
@@ -111,7 +111,7 @@ public class Board {
                 throw new IllegalArgumentException();
             }
         } catch (Exception e) {
-            
+
         }
         return tableau[pos.getRow()][pos.getColumn()].isFree();
     }
@@ -131,7 +131,7 @@ public class Board {
                 throw new IllegalArgumentException();
             }
         } catch (Exception e) {
-            
+
         }
         if (isFree(pos)) {
             return false;
@@ -144,7 +144,8 @@ public class Board {
      * Gets the list of the positions occupied by the player object passed in
      * parameters
      *
-     * @param player object of type Player that we want to get all of his positions in the board
+     * @param player object of type Player that we want to get all of his
+     * positions in the board
      * @return List of positions occupied by a player
      */
     public List<Position> getPositionsOccupiedBy(Player player) {
@@ -160,6 +161,25 @@ public class Board {
             }
         }
         return list;
+    }
+
+    /**
+     *  Gets the position of the piece in parameter
+     * @param piece the piece that we want to get its position
+     * @return the position of the piece in the board
+     */
+    public Position getPiecePosition(Piece piece) {
+        Position pos = null;
+        for (int i = 0; i < tableau.length; i++) {
+            for (int j = 0; j < tableau[i].length; j++) {
+                if (!isFree(new Position(i, j))) {
+                    if (tableau[i][j].getPiece() == piece) {
+                        pos = new Position(i, j);
+                    }
+                }
+            }
+        }
+        return pos;
     }
 
 }
