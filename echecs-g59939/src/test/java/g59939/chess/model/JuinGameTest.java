@@ -5,20 +5,29 @@ import java.util.List;
 import static g59939.chess.model.JuinChessTestUtils.asPos;
 import static g59939.chess.model.JuinChessTestUtils.move;
 import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class JuinGameTest {
 
+    public JuinGameTest() {
+    }
+
+    Game game;
+
+    @BeforeEach
+    public void setUp() {
+        game = new Game();
+    }
+
     @Test
     void testGame_whiteToPlayFirst() {
-        Model game = new Game();
         game.start();
         assertEquals(game.getCurrentPlayer().getColor(), Color.WHITE);
     }
 
     @Test
     void testGame_blackToPlayAfterOneMove_oneSquare() {
-        Model game = new Game();
         game.start();
         move(game, "a2", "a3");
         assertEquals(game.getCurrentPlayer().getColor(), Color.BLACK);
@@ -26,7 +35,6 @@ class JuinGameTest {
 
     @Test
     void testGame_pawnHasOneMove_after_initial_move() {
-        Model game = new Game();
         game.start();
         move(game, "c2", "c3");
         move(game, "c7", "c5");
@@ -36,7 +44,6 @@ class JuinGameTest {
 
     @Test
     void testGame_blackToPlayAfterOneMove_twoSquares() {
-        Model game = new Game();
         game.start();
         move(game, "a2", "a4");
         assertEquals(game.getCurrentPlayer().getColor(), Color.BLACK);
@@ -44,7 +51,6 @@ class JuinGameTest {
 
     @Test
     void testGame_canMoveTwoSquaresAtStart() {
-        Model game = new Game();
         game.start();
         List<Position> possibleMoves = game.getPossibleMoves(asPos("a2"));
         JuinChessTestUtils.assertEqualsIgnoringOrder(List.of(
@@ -55,7 +61,6 @@ class JuinGameTest {
 
     @Test
     void testGame_twoPawnsBlockEachOther() {
-        Model game = new Game();
         game.start();
         move(game, "e2", "e4");
         move(game, "e7", "e5");
@@ -65,7 +70,6 @@ class JuinGameTest {
 
     @Test
     void testGame() {
-        Model game = new Game();
         game.start();
         move(game, "a2", "a3");
         move(game, "a7", "a5");
@@ -75,7 +79,6 @@ class JuinGameTest {
 
     @Test
     void testGame_isMoveValid() {
-        Model game = new Game();
         game.start();
         move(game, "e2", "e3");
         move(game, "b8", "c6");
@@ -87,8 +90,6 @@ class JuinGameTest {
 
     @Test
     void testGame_isMoveValid_ScholarsCheckMate() {
-        Model game = new Game();
-        game.start();
         game.start();
         move(game, "e2", "e4");
         move(game, "e7", "e5");
@@ -102,7 +103,6 @@ class JuinGameTest {
 
     @Test
     void testGame_scholarCheckMate() {
-        Model game = new Game();
         game.start();
         move(game, "e2", "e4");
         move(game, "e7", "e5");
@@ -118,7 +118,6 @@ class JuinGameTest {
 
     @Test
     void testGame_checkWithoutMate() {
-        Model game = new Game();
         game.start();
         move(game, "f2", "f4");
         move(game, "e7", "e5");
@@ -139,14 +138,12 @@ class JuinGameTest {
     }
 
     void testGame_noMovesIfNoPiee() {
-        Model game = new Game();
         game.start();
         assertEquals(game.getPossibleMoves(asPos("e3")), List.of());
     }
 
     @Test
     void testGame_quickestStaleMate() {
-        Model game = new Game();
         game.start();
         move(game, "e2", "e3");
         move(game, "a7", "a5");
@@ -185,7 +182,6 @@ class JuinGameTest {
 
     @Test
     void testGame_FoolsMate() {
-        Model game = new Game();
         game.start();
         move(game, "f2", "f3");
         move(game, "e7", "e6");

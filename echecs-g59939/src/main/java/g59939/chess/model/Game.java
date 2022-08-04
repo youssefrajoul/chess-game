@@ -17,9 +17,9 @@ import java.util.stream.Stream;
  */
 public class Game implements Model {
 
-    private Board board;
-    private Player white;
-    private Player black;
+    private final Board board;
+    private final Player white;
+    private final Player black;
     private Player currentPlayer;
     private King whiteKing;
     private King blackKing;

@@ -114,6 +114,7 @@ public class TextView implements View {
      */
     @Override
     public void displayPlayer() {
+        System.out.println(model.getState());
         System.out.println("Current player : " + model.getCurrentPlayer().getColor());
     }
 
