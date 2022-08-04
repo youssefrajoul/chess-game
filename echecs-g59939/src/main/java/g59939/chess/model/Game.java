@@ -192,7 +192,7 @@ public class Game implements Model {
             if (getCapturePositions(getCurrentPlayer()).contains(board.getPiecePosition(oppositePlayerKing))
                     && getPossibleMoves(newPos).retainAll(getPossibleMoves(board.getPiecePosition(oppositePlayerKing)))) {
                 state = GameState.CHECK_MATE;
-            } else if (!getCapturePositions(getCurrentPlayer()).contains(board.getPiecePosition(oppositePlayerKing))
+            } else if (getCapturePositions(getCurrentPlayer()).contains(board.getPiecePosition(oppositePlayerKing))
                     && getPossibleMoves(newPos).retainAll(getPossibleMoves(board.getPiecePosition(oppositePlayerKing)))
                     && !getCapturePositions(getOppositePlayer()).contains(newPos)) {
                 state = GameState.STALE_MATE;

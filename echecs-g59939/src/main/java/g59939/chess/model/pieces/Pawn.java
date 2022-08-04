@@ -8,13 +8,15 @@ import java.util.*;
 
 /**
  * Represents the pawn
+ *
  * @author g59939
  */
 public class Pawn extends Piece {
 
     /**
      * constructor of the sub-Class
-     * @param color 
+     *
+     * @param color
      */
     public Pawn(Color color) {
         super(color);
@@ -111,6 +113,7 @@ public class Pawn extends Piece {
 
     /**
      * Gets the list of possible capturing moves for the pawn
+     *
      * @param position represents the current position of the pawn
      * @param board the board of chess game
      * @return list of positions where the pawn can capture the opponents pieces
@@ -121,19 +124,19 @@ public class Pawn extends Piece {
         if (board.getPiece(position).getColor() == Color.WHITE && board.contains(position.next(Direction.N))) {
             // Diagonal Movess
             if (board.contains(position.next(Direction.NE))) {
-                possAttackMoves(possibleCapturesList, position, board, Direction.NE, Color.WHITE);
+                possibleCapturesList.add(position.next(Direction.NE));
             }
             if (board.contains(position.next(Direction.NW))) {
-                possAttackMoves(possibleCapturesList, position, board, Direction.NW, Color.WHITE);
+                possibleCapturesList.add(position.next(Direction.NW));
             }
         }
         if (board.getPiece(position).getColor() == Color.BLACK && board.contains(position.next(Direction.S))) {
             // Diagonal Moves
             if (board.contains(position.next(Direction.SE))) {
-                possAttackMoves(possibleCapturesList, position, board, Direction.SE, Color.BLACK);
+                possibleCapturesList.add(position.next(Direction.SE));
             }
             if (board.contains(position.next(Direction.SW))) {
-                possAttackMoves(possibleCapturesList, position, board, Direction.SW, Color.BLACK);
+                possibleCapturesList.add(position.next(Direction.SW));
             }
         }
         return possibleCapturesList;
