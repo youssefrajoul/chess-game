@@ -33,18 +33,11 @@ public class Controller {
             Position newPos = view.askPosition();
             model.movePiecePosition(oldPos, newPos);
             state = model.getState();
-            if (null != state) switch (state) {
-                case CHECK_MATE -> {
-                    view.displayBoard();
-                    view.displayWinner();
-                }
-                case STALE_MATE -> {
-                    System.out.println("*** Game Over ***");
-                    System.out.println("Draw for this match");
-                }
-                case CHECK -> System.out.println(model.getOppositePlayer() + " King is in check");
-                default -> {
-                }
+            if (state == GameState.CHECK_MATE) {
+                view.displayMat();
+            }
+            if (state == GameState.STALE_MATE) {
+                view.displayStaleMat();
             }
         }
     }

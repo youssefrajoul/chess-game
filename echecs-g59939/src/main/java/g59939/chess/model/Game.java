@@ -7,6 +7,7 @@ import g59939.chess.model.pieces.Pawn;
 import g59939.chess.model.pieces.Piece;
 import g59939.chess.model.pieces.Queen;
 import g59939.chess.model.pieces.Rook;
+import g59939.chess.view.TextView;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;

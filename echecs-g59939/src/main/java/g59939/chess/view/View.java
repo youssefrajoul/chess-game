@@ -24,6 +24,21 @@ public interface View {
     public void displayWinner();
 
     /**
+     * Display that the opponent is in check
+     */
+    public void displayCheck();
+
+    /**
+     * Display that the opponent is in checkMate and announce the winner
+     */
+    public void displayMat();
+
+    /**
+     * Display that the game is draw
+     */
+    public void displayStaleMat();
+
+    /**
      * Display a message telling the Current player to play
      */
     public void displayPlayer();

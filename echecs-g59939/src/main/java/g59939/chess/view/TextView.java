@@ -110,6 +110,30 @@ public class TextView implements View {
     }
 
     /**
+     * Display that the opponent is in check
+     */
+    @Override
+    public void displayCheck() {
+        System.out.println("You're in check !!! Move your King now");
+    }
+
+    /**
+     * Display that the opponent is in checkMate and announce the winner
+     */
+    @Override
+    public void displayMat() {
+        System.out.println("CheckMate !!! The winner is : " + model.getCurrentPlayer().getColor());
+    }
+
+    /**
+     * Display that the game is draw
+     */
+    @Override
+    public void displayStaleMat() {
+        System.out.println("StaleMate !!! Draw");
+    }
+
+    /**
      * Display the current player
      */
     @Override
