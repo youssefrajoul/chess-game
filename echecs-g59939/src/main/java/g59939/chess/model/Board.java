@@ -171,8 +171,8 @@ public class Board {
      */
     public Position getPiecePosition(Piece piece) {
         Position pos = null;
-        for (int i = 0; i < tableau.length; i++) {
-            for (int j = 0; j < tableau[i].length; j++) {
+        for (int i = 7; i >= 0; i--) {
+            for (int j = 0; j < 8; j++) {
                 if (!isFree(new Position(i, j))) {
                     if (tableau[i][j].getPiece() == piece) {
                         pos = new Position(i, j);

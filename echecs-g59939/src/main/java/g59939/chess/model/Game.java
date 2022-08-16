@@ -179,44 +179,39 @@ public class Game implements Model {
             }
         } catch (Exception e) {
         }
-        Piece oppositePlayerKing = null;
-        if (getCurrentPlayer().getColor() == Color.WHITE) {
-            oppositePlayerKing = blackKing;
-        } else {
-            oppositePlayerKing = whiteKing;
+        if (board.contains(oldPos) && board.contains(newPos)) {
+            System.out.println(getState());
+            board.setPiece(board.getPiece(oldPos), newPos);
+            board.dropPiece(oldPos);
+
+            if (isValidMove(oldPos, newPos)) {
+                if (getCapturePositions(getCurrentPlayer()).contains(board.getPiecePosition(getOppositeKing()))
+                        && getCapturePositions(getCurrentPlayer()).containsAll(getPossibleMoves(board.getPiecePosition(getOppositeKing())))
+                        && !getCapturePositions(getOppositePlayer()).contains(newPos)) {
+
+                    state = GameState.CHECK_MATE;
+
+                } else if (getCapturePositions(currentPlayer).containsAll(getPossibleMoves(board.getPiecePosition(getOppositeKing())))
+                        && !getCapturePositions(getCurrentPlayer()).contains(board.getPiecePosition(getOppositeKing()))) {
+                    state = GameState.STALE_MATE;
+
+                } else if (getCapturePositions(currentPlayer).contains(board.getPiecePosition(getOppositeKing()))) {
+                    state = GameState.CHECK;
+
+                } else {
+                    state = GameState.PLAY;
+
+                }
+                currentPlayer = getOppositePlayer();
+            } else {
+                board.setPiece(board.getPiece(newPos), oldPos);
+                board.dropPiece(newPos);
+                System.out.println("Wrong Mouvment");
+            }
         }
-        board.setPiece(board.getPiece(oldPos), newPos);
-        board.dropPiece(oldPos);
-        if (isValidMove(oldPos, newPos) && getCapturePositions(getOppositePlayer()).contains(oldPos)) {
-            state = GameState.PLAY;
-        } else if (getCapturePositions(getCurrentPlayer()).contains(board.getPiecePosition(oppositePlayerKing))
-                && getPossibleMoves(board.getPiecePosition(oppositePlayerKing)).isEmpty()) {
-            state = GameState.CHECK_MATE;
-        } else if (getCapturePositions(getCurrentPlayer()).contains(board.getPiecePosition(oppositePlayerKing))
-                && !getPossibleMoves(board.getPiecePosition(oppositePlayerKing)).isEmpty()) {
-            state = GameState.CHECK;
-        } else if (!getCapturePositions(getCurrentPlayer()).contains(board.getPiecePosition(oppositePlayerKing))) {
-            state = GameState.STALE_MATE;
-        }
-        currentPlayer = getOppositePlayer();
     }
 
-//    /**
-//     * Check if the game is over or not
-//     *
-//     * @return true if the game is over, false otherwise.
-//     */
-//    @Override
-//    public boolean isGameOver() {
-//        List<Position> occupiedPosition = board.getPositionsOccupiedBy(getCurrentPlayer());
-//        boolean gameOver = true;
-//        for (int i = 0; i < occupiedPosition.size(); i++) {
-//            if (!getPossibleMoves(occupiedPosition.get(i)).isEmpty()) {
-//                gameOver = false;
-//            }
-//        }
-//        return gameOver;
-//    }
+
     /**
      * Get the possible moves for the piece located at specified position.
      *
@@ -251,12 +246,23 @@ public class Game implements Model {
 
         } catch (Exception e) {
         }
-        if (getCapturePositions(getOppositePlayer()).contains(newPos)) {
-            return false;
-        } else if (getCapturePositions(getOppositePlayer()).contains(oldPos) && getCapturePositions(getOppositePlayer()).contains(newPos)) {
-            return false;
+
+        return !getCapturePositions(getOppositePlayer()).contains(board.getPiecePosition(getCurrentKing()));
+    }
+
+    private King getCurrentKing() {
+        if (getCurrentPlayer().getColor() == Color.WHITE) {
+            return whiteKing;
         } else {
-            return true;
+            return blackKing;
+        }
+    }
+
+    private King getOppositeKing() {
+        if (getCurrentPlayer().getColor() == Color.WHITE) {
+            return blackKing;
+        } else {
+            return whiteKing;
         }
     }
 
@@ -271,7 +277,7 @@ public class Game implements Model {
         List<Position> list_Positions_Occu = board.getPositionsOccupiedBy(player);
         List<Position> list_Capture_Positions = new ArrayList<>();
         for (int i = 0; i < list_Positions_Occu.size(); i++) {
-            list_Capture_Positions.retainAll(getPiece(list_Positions_Occu.get(i)).getCapturePositions(list_Positions_Occu.get(i), board));
+            list_Capture_Positions.addAll(getPiece(list_Positions_Occu.get(i)).getCapturePositions(list_Positions_Occu.get(i), board));
         }
         return list_Capture_Positions;
     }

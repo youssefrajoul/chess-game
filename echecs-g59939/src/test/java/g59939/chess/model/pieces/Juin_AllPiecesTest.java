@@ -71,12 +71,12 @@ public class Juin_AllPiecesTest {
     }
 
     @Test
-    void getPossibleMoves_white_bishop_with_ownPiece() {
+    void getCaptureMoves_white_bishop_with_opponent() {
         Position position = new Position(3, 3);
         var piece = new Bishop(Color.WHITE);
         board.setPiece(piece, position);
 
-        board.setPiece(new Pawn(Color.WHITE), new Position(5, 5));
+        board.setPiece(new Pawn(Color.BLACK), new Position(5, 5));
 
         List<Position> expected = List.of(
                 new Position(4, 4),
@@ -88,10 +88,11 @@ public class Juin_AllPiecesTest {
                 new Position(0, 6),
                 new Position(4, 2),
                 new Position(5, 1),
-                new Position(6, 0)
+                new Position(6, 0),
+                new Position(5, 5)
         );
 
-        List<Position> positions = piece.getPossibleMoves(position, board);
+        List<Position> positions = piece.getCapturePositions(position, board);
 
         JuinChessTestUtils.assertEqualsIgnoringOrder(expected, positions);
     }
