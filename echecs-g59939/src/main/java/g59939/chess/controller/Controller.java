@@ -26,7 +26,7 @@ public class Controller {
         GameState state = GameState.PLAY;
         view.displayTitle();
         model.start();
-        while (state == GameState.PLAY) {
+        while (state == GameState.PLAY || state == GameState.CHECK) {
             view.displayBoard();
             view.displayPlayer();
             Position oldPos = view.askPosition();

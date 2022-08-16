@@ -192,8 +192,9 @@ public class Game implements Model {
 
                     state = GameState.CHECK_MATE;
 
-                } else if (getCapturePositions(currentPlayer).containsAll(getPossibleMoves(board.getPiecePosition(getOppositeKing())))
-                        && !getCapturePositions(getCurrentPlayer()).contains(board.getPiecePosition(getOppositeKing()))) {
+                } else if (getCapturePositions(getCurrentPlayer()).containsAll(getPossibleMoves(board.getPiecePosition(getOppositeKing())))
+                        && !getCapturePositions(getCurrentPlayer()).contains(board.getPiecePosition(getOppositeKing()))
+                        && getCapturePositions(getCurrentPlayer()).isEmpty()) {
                     state = GameState.STALE_MATE;
 
                 } else if (getCapturePositions(currentPlayer).contains(board.getPiecePosition(getOppositeKing()))) {
