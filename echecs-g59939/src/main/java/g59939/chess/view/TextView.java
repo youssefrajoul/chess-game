@@ -2,6 +2,7 @@ package g59939.chess.view;
 
 import g59939.chess.model.Board;
 import g59939.chess.model.Color;
+import g59939.chess.model.GameState;
 import g59939.chess.model.Model;
 import g59939.chess.model.pieces.Piece;
 import g59939.chess.model.Player;
@@ -140,6 +141,20 @@ public class TextView implements View {
     public void displayPlayer() {
         System.out.println(model.getState());
         System.out.println("Current player : " + model.getCurrentPlayer().getColor());
+    }
+
+    @Override
+    public void quitGame() {
+        Scanner scan = new Scanner(System.in);
+        System.out.println("To quit type quit in keyboard");
+        if ("quit".equals(scan.next())) {
+            model.setState(GameState.QUIT);
+        }
+    }
+
+    @Override
+    public void displayQuit() {
+        System.out.println("The current player quit !!! The winner is : " + model.getOppositePlayer().getColor());
     }
 
     /**

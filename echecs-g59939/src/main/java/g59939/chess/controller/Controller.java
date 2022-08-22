@@ -29,6 +29,10 @@ public class Controller {
         while (state == GameState.PLAY || state == GameState.CHECK) {
             view.displayBoard();
             view.displayPlayer();
+            if (state == GameState.QUIT) {
+                view.displayQuit();
+                break;
+            }
             Position oldPos = view.askPosition();
             Position newPos = view.askPosition();
             model.movePiecePosition(oldPos, newPos);

@@ -75,6 +75,16 @@ public class Game implements Model {
     public GameState getState() {
         return state;
     }
+    
+    /**
+     * Gets the current state of the game
+     *
+     * @return the state
+     */
+    @Override
+    public void setState(GameState state) {
+        this.state = state;
+    }
 
     /**
      * Get the piece of the board located on a given position
@@ -180,8 +190,7 @@ public class Game implements Model {
             }
         } catch (Exception e) {
         }
-        if (board.contains(oldPos) && board.contains(newPos)) {
-            System.out.println(getState());
+        
             board.setPiece(board.getPiece(oldPos), newPos);
             board.dropPiece(oldPos);
 
@@ -221,13 +230,13 @@ public class Game implements Model {
 
                 }
                 currentPlayer = getOppositePlayer();
-                board.getPiece(oldPos).move();
+                board.getPiece(newPos).move();
             } else {
                 board.setPiece(board.getPiece(newPos), oldPos);
                 board.dropPiece(newPos);
                 System.out.println("Wrong Mouvment");
             }
-        }
+        
     }
 
     /**
@@ -341,7 +350,7 @@ public class Game implements Model {
             }
         }
         //C3
-        if (player.getColor() == Color.WHITE) {
+        if (getCurrentPlayer().getColor() == Color.WHITE) {
             for (int i = 1; i < 7; i++) {
                 if (getCapturePositions(getOppositePlayer()).contains(new Position(0, i))) {
                     isCastlingPoss = false;
@@ -349,7 +358,7 @@ public class Game implements Model {
                 }
             }
         }
-        if (player.getColor() == Color.BLACK) {
+        if (getCurrentPlayer().getColor() == Color.BLACK) {
             for (int i = 1; i < 7; i++) {
                 if (getCapturePositions(getOppositePlayer()).contains(new Position(7, i))) {
                     isCastlingPoss = false;

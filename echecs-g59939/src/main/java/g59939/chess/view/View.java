@@ -32,6 +32,11 @@ public interface View {
      * Display that the opponent is in checkMate and announce the winner
      */
     public void displayMat();
+    
+    /**
+     * Display that the opponent is the winner
+     */
+    public void displayQuit();
 
     /**
      * Display that the game is draw
@@ -43,6 +48,11 @@ public interface View {
      */
     public void displayPlayer();
 
+    /**
+     * Asks if the player wants to quit the game
+     */
+    public void quitGame();
+    
     /**
      * Ask a valid position(in board) to the current player
      *

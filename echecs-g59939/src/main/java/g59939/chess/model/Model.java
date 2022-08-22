@@ -18,9 +18,16 @@ public interface Model {
     /**
      * Gets the current state of the game
      *
-     * @return the state (PLAY / CHECK / CHECK_MATE / STALE_MATE)
+     * @return the state (PLAY / CHECK / CHECK_MATE / STALE_MATE / QUIT)
      */
     public GameState getState();
+
+    /**
+     * sets the current state of the game
+     *
+     * @return the state (PLAY / CHECK / CHECK_MATE / STALE_MATE / QUIT)
+     */
+    public void setState(GameState state);
 
     /**
      * Get the piece of the board located on a given position
@@ -76,7 +83,6 @@ public interface Model {
 //     * @return true if the game is over, false otherwise.
 //     */
 //    public boolean isGameOver();
-
     /**
      * Get the possible moves for the piece located at the specified position.
      *
