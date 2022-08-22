@@ -14,6 +14,7 @@ import java.util.*;
 public abstract class Piece {
 
     private Color color;
+    private boolean hasMoved;
 
     /**
      * constructor of the class
@@ -22,6 +23,7 @@ public abstract class Piece {
      */
     public Piece(Color color) {
         this.color = color;
+        this.hasMoved = false;
     }
 
     /**
@@ -31,6 +33,14 @@ public abstract class Piece {
      */
     public Color getColor() {
         return color;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public boolean isHasMoved() {
+        return hasMoved;
     }
 
     /**
@@ -84,5 +94,9 @@ public abstract class Piece {
                 position.next(direction).next(direction).next(direction).next(direction).next(direction).next(direction).next(direction).next(direction)
         );
         return listNextPositions.get(numOfSteps);
+    }
+    
+    public void move(){
+        hasMoved = true;
     }
 }

@@ -205,6 +205,7 @@ public class Game implements Model {
 
                 }
                 currentPlayer = getOppositePlayer();
+                board.getPiece(oldPos).move();
             } else {
                 board.setPiece(board.getPiece(newPos), oldPos);
                 board.dropPiece(newPos);
@@ -212,7 +213,6 @@ public class Game implements Model {
             }
         }
     }
-
 
     /**
      * Get the possible moves for the piece located at specified position.
@@ -282,5 +282,44 @@ public class Game implements Model {
             list_Capture_Positions.addAll(getPiece(list_Positions_Occu.get(i)).getCapturePositions(list_Positions_Occu.get(i), board));
         }
         return list_Capture_Positions;
+    }
+
+    private boolean isCastlingPossible(Player player, Position rookPosition) {
+        boolean isCastlingPoss = true;
+        //C1
+        if (getCurrentKing().isHasMoved() || board.getPiece(rookPosition).isHasMoved()) {
+            isCastlingPoss = false;
+        }
+
+        //C2
+        if (rookPosition.getColumn() == 7) {
+            if (!board.isFree(rookPosition.next(Direction.W)) || !board.isFree(rookPosition.next(Direction.W).next(Direction.W))) {
+                isCastlingPoss = false;
+            }
+        }
+
+        if (rookPosition.getColumn() == 0) {
+            if (!board.isFree(rookPosition.next(Direction.E)) || !board.isFree(rookPosition.next(Direction.E).next(Direction.E))) {
+                isCastlingPoss = false;
+            }
+        }
+        //C3
+        if (player.getColor() == Color.WHITE) {
+            for (int i = 1; i < 7; i++) {
+                if (getCapturePositions(getOppositePlayer()).contains(new Position(0, i))) {
+                    isCastlingPoss = false;
+                    break;
+                }
+            }
+        }
+        if (player.getColor() == Color.BLACK) {
+            for (int i = 1; i < 7; i++) {
+                if (getCapturePositions(getOppositePlayer()).contains(new Position(7, i))) {
+                    isCastlingPoss = false;
+                    break;
+                }
+            }
+        }
+        return isCastlingPoss;
     }
 }
