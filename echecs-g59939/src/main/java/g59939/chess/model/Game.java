@@ -186,6 +186,22 @@ public class Game implements Model {
             board.dropPiece(oldPos);
 
             if (isValidMove(oldPos, newPos)) {
+                if (oldPos == board.getPiecePosition(getCurrentKing()) && newPos == new Position(0, 6)) {
+                    board.setPiece(board.getPiece(new Position(0, 7)), new Position(0, 5));
+                    board.dropPiece(new Position(0, 7));
+                }
+                if (oldPos == board.getPiecePosition(getCurrentKing()) && newPos == new Position(0, 2)) {
+                    board.setPiece(board.getPiece(new Position(0, 0)), new Position(0, 3));
+                    board.dropPiece(new Position(0, 0));
+                }
+                if (oldPos == board.getPiecePosition(getCurrentKing()) && newPos == new Position(7, 6)) {
+                    board.setPiece(board.getPiece(new Position(7, 7)), new Position(7, 5));
+                    board.dropPiece(new Position(7, 7));
+                }
+                if (oldPos == board.getPiecePosition(getCurrentKing()) && newPos == new Position(7, 2)) {
+                    board.setPiece(board.getPiece(new Position(7, 0)), new Position(7, 3));
+                    board.dropPiece(new Position(7, 0));
+                }
                 if (getCapturePositions(getCurrentPlayer()).contains(board.getPiecePosition(getOppositeKing()))
                         && getCapturePositions(getCurrentPlayer()).containsAll(getPossibleMoves(board.getPiecePosition(getOppositeKing())))
                         && !getCapturePositions(getOppositePlayer()).contains(newPos)) {
@@ -222,7 +238,21 @@ public class Game implements Model {
      */
     @Override
     public List<Position> getPossibleMoves(Position position) {
-        return board.getPiece(position).getPossibleMoves(position, board);
+        List<Position> listPossibleMoves = new ArrayList<>();
+        listPossibleMoves.addAll(board.getPiece(position).getPossibleMoves(position, board));
+        if (position == board.getPiecePosition(getCurrentKing()) && isCastlingPossible(currentPlayer, new Position(0, 7))) {
+            listPossibleMoves.add(new Position(0, 6));
+        }
+        if (position == board.getPiecePosition(getCurrentKing()) && isCastlingPossible(currentPlayer, new Position(0, 0))) {
+            listPossibleMoves.add(new Position(0, 2));
+        }
+        if (position == board.getPiecePosition(getCurrentKing()) && isCastlingPossible(currentPlayer, new Position(7, 7))) {
+            listPossibleMoves.add(new Position(7, 6));
+        }
+        if (position == board.getPiecePosition(getCurrentKing()) && isCastlingPossible(currentPlayer, new Position(7, 0))) {
+            listPossibleMoves.add(new Position(7, 2));
+        }
+        return listPossibleMoves;
     }
 
     /**
@@ -286,6 +316,13 @@ public class Game implements Model {
 
     private boolean isCastlingPossible(Player player, Position rookPosition) {
         boolean isCastlingPoss = true;
+        try {
+            if (board.getPiece(rookPosition).isHasMoved()) {
+                throw new IllegalArgumentException("error rookPosition");
+            }
+        } catch (Exception e) {
+        }
+
         //C1
         if (getCurrentKing().isHasMoved() || board.getPiece(rookPosition).isHasMoved()) {
             isCastlingPoss = false;
